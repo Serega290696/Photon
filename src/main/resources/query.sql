@@ -1,0 +1,1 @@
+DELETE FROM top_list where id > 8;

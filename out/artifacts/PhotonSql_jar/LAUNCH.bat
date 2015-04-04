@@ -1,0 +1,1 @@
+Java -Djava.library.path="lib\natives" -jar PhotonSql.jar
