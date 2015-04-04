@@ -142,6 +142,16 @@ public class Game implements IGame{
                 if(Keyboard.isKeyDown(Keyboard.KEY_1)){
                     ListWorker.getList();
                 }
+                if(Keyboard.isKeyDown(Keyboard.KEY_M)){
+                    mute = true;
+                    if(Draw.musicIsPlaying(Music.FON1))
+                        Draw.musicStop(Music.FON1);
+                }
+                if(Keyboard.isKeyDown(Keyboard.KEY_N)){
+                    mute = false;
+                    if(!Draw.musicIsPlaying(Music.FON1))
+                        Draw.musicPlay(Music.FON1);
+                }
                 if (player2 != null) {
                     if(Keyboard.isKeyDown(Keyboard.KEY_UP) && !player2.isBot){
                         if(player2.freak <= player2.maxFreak)
