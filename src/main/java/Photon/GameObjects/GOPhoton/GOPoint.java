@@ -1,6 +1,7 @@
 package Photon.GameObjects.GOPhoton;
 
 import Photon.*;
+import Photon.Enums.DrawFigure;
 
 /**
  * Created by Serega on 03.03.2015.

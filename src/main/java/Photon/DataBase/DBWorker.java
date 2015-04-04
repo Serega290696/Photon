@@ -55,7 +55,6 @@ public class DBWorker {
             preparedStatement.setTime(5, bestTime);
             preparedStatement.setDate(6, gameDate);
             preparedStatement.setInt(7, isBestScore);
-            System.out.println("HERE!!!");
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();

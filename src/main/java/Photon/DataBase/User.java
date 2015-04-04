@@ -17,6 +17,8 @@ public class User {
     private Date gameDate;
     private boolean isBestScore = true;
 
+    public static String defaultName = "Player";
+
     public User(String name, int score, Time time, Date date) {
         this.id = setId();
         this.name = name;
@@ -24,6 +26,7 @@ public class User {
         this.placeInTopList = setPlaceInTopList(this.score);
         this.bestTime = time;
         this.gameDate = date;
+        setName();
 //        this(0, name, setPlaceInTopList(this.score), score, time, date, isBestScore);
     }
     public User(int id, String name, int placeInTopList, int bestScore, Time bestTime, Date gameDate) {
@@ -33,6 +36,7 @@ public class User {
         this.score = bestScore;
         this.bestTime = bestTime;
         this.gameDate = gameDate;
+        setName();
     }
 
     public boolean changeName(String newName) {
@@ -122,6 +126,30 @@ public class User {
         System.out.println(str);
         return str;
     }
+    public ArrayList<String> getData() {
+        String prefics = "\t* ";
+        ArrayList<String> dataList = new ArrayList<String>();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        dataList.add(prefics + "Id: " + Integer.toString(id));
+        dataList.add(prefics + "Name: " + name);
+        dataList.add(prefics + "Place: " + Integer.toString(placeInTopList));
+        dataList.add(prefics + "Score: " + Integer.toString(score));
+        dataList.add(prefics + "Time: " + bestTime.toString());
+        dataList.add(prefics + "Date: " + gameDate.toString());
+        if(isBestScore)
+            dataList.add(prefics + "THE RECORD!");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//
+//        dataList.add(Integer.toString(id));
+//        dataList.add(name);
+//        dataList.add(Integer.toString(placeInTopList));
+//        dataList.add(Integer.toString(score));
+//        dataList.add(bestTime.toString());
+//        dataList.add(gameDate.toString());
+//        dataList.add(Boolean.toString(isBestScore));
+
+        return dataList;
+    }
     public static int setId() {
         int tmpID = 1;
         for(int i = 1; DBWorker.getUser(i) != null; i++) {
@@ -129,5 +157,10 @@ public class User {
         }
 //        tmpID++;
         return tmpID;
+    }
+    public void setName() {
+        if(name.equals(defaultName)) {
+            name += id;
+        }
     }
 }

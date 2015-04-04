@@ -33,6 +33,7 @@ public class Main {
             initDisplay();
             initGL();
             initDBWorker();
+            Draw.init();
 
             restartGame();
 

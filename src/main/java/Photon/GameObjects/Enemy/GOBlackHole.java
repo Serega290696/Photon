@@ -1,6 +1,7 @@
 package Photon.GameObjects.Enemy;
 
 import Photon.*;
+import Photon.Enums.DrawFigure;
 import Photon.GameObjects.GOPhoton.GOPlayer;
 
 /**

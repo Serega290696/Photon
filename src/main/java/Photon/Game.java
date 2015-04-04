@@ -1,7 +1,10 @@
 package Photon;
 
 import Photon.DataBase.DBWorker;
+import Photon.DataBase.ListWorker;
 import Photon.DataBase.User;
+import Photon.Enums.DrawFigure;
+import Photon.Enums.Music;
 import Photon.Exceptions.PlayerDoNotExist;
 import Photon.GameObjects.Bonus.GOPrism;
 import Photon.GameObjects.Enemy.GOBlackHole;
@@ -46,13 +49,14 @@ public class Game implements IGame{
     public static boolean somethingWasChanged = false;
     public static int level = 1;
     public static boolean nowNewSecond = false;
+    public static boolean mute = true;
 
     public Game() {
-
+        clear();
         controlMode = 2;
         try {
             GOPlayer massOfPlayers[] = {
-                    player = new GOPlayer(50, 50*Main.ratio, 2, DrawFigure.CIRCLE, "Serega", 2, false),
+                    player = new GOPlayer(50, 50*Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false),
 //                    player2 = new GOPlayer(20, 50*Main.ratio, 2, DrawFigure.CIRCLE, "Player#2", 5, false),
 //                    player2 = new GOPlayer(20, 50*Main.ratio, 2, DrawFigure.CIRCLE, "Player#2", 6, false),
 //                    new GOPlayer(30, 50*Main.ratio, 1, DrawFigure.CIRCLE, "miniBot", 3, true),
@@ -65,11 +69,13 @@ public class Game implements IGame{
             System.err.print(myE);
         }
         allObjects.add(blackHole = new GOBlackHole());
+        if(!Draw.musicIsPlaying(Music.FON1) && !mute) {
+            Draw.musicPlay(Music.FON1);
+        }
     }
 
     @Override
     public void clear() {
-        Draw.init();
         players.clear();
         allObjects.clear();
         obstacles.clear();
@@ -78,6 +84,8 @@ public class Game implements IGame{
 
         level = 1;
         moveOnStep = defMoveOnStep;
+        if(Draw.musicIsPlaying(Music.FON1))
+            Draw.musicStop(Music.FON1);
     }
 
     @Override
@@ -130,6 +138,9 @@ public class Game implements IGame{
                 }
                 if(Keyboard.isKeyDown(Keyboard.KEY_DOWN) && !player.isBot){
                     player.collisionWithObstacle();
+                }
+                if(Keyboard.isKeyDown(Keyboard.KEY_1)){
+                    ListWorker.getList();
                 }
                 if (player2 != null) {
                     if(Keyboard.isKeyDown(Keyboard.KEY_UP) && !player2.isBot){

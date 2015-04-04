@@ -1,12 +1,9 @@
 package Photon.GameObjects.GOPhoton;
 
-import Photon.DrawFigure;
-import Photon.GO;
+import Photon.Enums.DrawFigure;
 import Photon.Game;
 import Photon.Main;
 import Photon.Draw;
-
-import java.util.ArrayList;
 
 /**
  * Created by Serega on 01.04.2015.

@@ -1,6 +1,7 @@
 package Photon.GameObjects.GOPhoton;
 
 import Photon.*;
+import Photon.Enums.DrawFigure;
 import Photon.GameObjects.Bonus.GOPrism;
 import Photon.GameObjects.Enemy.GOObstacle;
 
@@ -129,14 +130,14 @@ public class GOPlayer extends Photon {
 
 
 
-        if(Game.nowNewSecond) {
-            System.out.print(Game.integerTime + ". lvl:" + Game.level + ". " + name + ".\t\tScore: " + (int) score + ".   Dodged obstacles: " + dodgedObstacle + ".   Clash with obstacles: " + Math.abs(hitPoints) +
-                            "\t\t ||| \t\t Color: " + color + ". Freak: " + freak + ". IsBot: " + isBot
-            );
-            if (isBot)
-                System.out.print("\t\t ||| \t\t BOT: TRUE" + ". BotLevel: " + botLevel + ". NeedToUpFreak: " + needToUpFreak);
-            System.out.println();
-        }
+//        if(Game.nowNewSecond) {
+//            System.out.print(Game.integerTime + ". lvl:" + Game.level + ". " + name + ".\t\tScore: " + (int) score + ".   Dodged obstacles: " + dodgedObstacle + ".   Clash with obstacles: " + Math.abs(hitPoints) +
+//                            "\t\t ||| \t\t Color: " + color + ". Freak: " + freak + ". IsBot: " + isBot
+//            );
+//            if (isBot)
+//                System.out.print("\t\t ||| \t\t BOT: TRUE" + ". BotLevel: " + botLevel + ". NeedToUpFreak: " + needToUpFreak);
+//            System.out.println();
+//        }
 
         checkCollisions();
         move();

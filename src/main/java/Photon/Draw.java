@@ -1,6 +1,10 @@
 package Photon;
 
+import Photon.Enums.DrawFigure;
+import Photon.Enums.Music;
 import org.newdawn.slick.*;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
@@ -30,12 +34,12 @@ public class Draw {
 
     private static final String CONTENT_PATH = "content/";
     private static final String TEXTURE_PATH = CONTENT_PATH+"images/";
-    private static final String SOUND_PATH = CONTENT_PATH+"sound/";
+    private static final String SOUND_PATH = CONTENT_PATH+"music/";
     private static final String FONTS_PATH = CONTENT_PATH+"fonts/";
 
 
     private static Texture fon1;
-
+    private static Audio fonSound1;
 //    public static long curTime;
 
     public static void draw(DrawFigure figure, float x, float y, float sx, float sy, float rotate, int color, float opacity) {
@@ -237,9 +241,43 @@ public class Draw {
                 break;
         }
     }
+    public static void musicPlay(Music music) {
+        switch(music) {
+            case FON1:
+                fonSound1.playAsSoundEffect(1.0f, 1.0f, false);
+//                fonSound1.playAsSoundEffect();
+                break;
+        }
+    }
+    public static boolean musicIsPlaying(Music music) {
+        switch(music) {
+            case FON1:
+                return fonSound1.isPlaying();
+        }
+        return false;
+    }
+    public static void musicStop(Music music) {
+        switch(music) {
+            case FON1:
+                System.out.println(fonSound1.getPosition() + " : " + fonSound1.isPlaying());
+                fonSound1.stop();
+                System.out.println(fonSound1.getPosition() + " : " + fonSound1.isPlaying());
+
+                System.out.println("OU Yeah!!");
+                break;
+        }
+    }
     public static void init() {
         try {
             fon1 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(TEXTURE_PATH + "fon/fon1.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        initMusic();
+    }
+    public static void initMusic() {
+        try {
+            fonSound1 = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream(SOUND_PATH + "1.wav"));
         } catch (IOException e) {
             e.printStackTrace();
         }
