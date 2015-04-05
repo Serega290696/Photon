@@ -46,11 +46,11 @@ public class GOObstacle extends GO{
 //            if(obPlayer.danger) continue;
             if(x < obPlayer.x) {
                 color = defaultColor;
-                if(defaultColor != 0 && defaultColor != 1 && defaultColor == obPlayer.color && !this.addToDodgedObstacle && obPlayer.immortal <= 0) {
+                if(defaultColor != 0 && defaultColor != 1 && defaultColor == obPlayer.color && !this.addToDodgedObstacle && obPlayer.immortalityDie <= 0) {
                     this.addToDodgedObstacle = true;
                     obPlayer.setDodgedObstacle();
                 }
-//                if(defaultColor == obPlayer.color && obPlayer.immortal > 0)
+//                if(defaultColor == obPlayer.color && obPlayer.immortalityDie > 0)
 //                    defaultColor = 1;
                 continue;
             }
@@ -73,11 +73,11 @@ public class GOObstacle extends GO{
 //            if(obPlayer.danger) continue;
             if(x < obPlayer.x) {
                 color = defaultColor;
-                if(defaultColor != 0 && defaultColor != 1 && defaultColor == obPlayer.color && !this.addToDodgedObstacle && obPlayer.immortal <= 0) {
+                if(defaultColor != 0 && defaultColor != 1 && defaultColor == obPlayer.color && !this.addToDodgedObstacle && obPlayer.immortalityDie <= 0) {
                     this.addToDodgedObstacle = true;
                     obPlayer.setDodgedObstacle();
                 }
-                if(defaultColor == obPlayer.color && obPlayer.immortal > 0)
+                if(defaultColor == obPlayer.color && obPlayer.immortalityDie > 0)
                     defaultColor = 1;
                 continue;
             }

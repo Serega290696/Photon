@@ -2,7 +2,6 @@ package Photon.GameObjects.GOPhoton;
 
 import Photon.*;
 import Photon.Enums.DrawFigure;
-import org.lwjgl.input.Mouse;
 
 /**
  * Created by Serega on 03.03.2015.
@@ -72,7 +71,7 @@ public class GOPoint extends Photon {
                 sy = 0;
             sy *= temp * defaultSy;
             opacity = sy / (player.lengthTrajectory*temp)/3;
-            if(player.immortal > 0) opacity *= 0.3;
+            if(player.immortalityDie > 0) opacity *= 0.3;
 
 //            x = Game.player.x + moveOnStep / Game.player.freak;
 //            y = player.myFunction(player.t + (x - player.x)/moveOnStep*player.freak);
@@ -81,7 +80,7 @@ public class GOPoint extends Photon {
 //            y = player.path.get(curPointNumber+1).y;
             sy = (x+1) / player.x * defaultSy;
             opacity = (x + 1) / player.x;
-            if(player.immortal > 0)
+            if(player.immortalityDie > 0)
                 opacity *= (x + 1) / player.x *0.5;
         }
         sx = sy;

@@ -9,6 +9,7 @@ import Photon.GameObjects.GOPhoton.GOPlayer;
  */
 public class GOBlackHole extends GO {
 
+    public float specialGravityParameter = 0;
     public float gravitationPower = 0;
     public float maxSpeedGravitation = 25;
     public float gravitationParameter = 0;
@@ -83,13 +84,17 @@ public class GOBlackHole extends GO {
         if( (Main.game.player.x - blackHoleSize) / (100-blackHoleSize) > 0.45) {
             Main.game.player.superBonus = true;
             if( (Main.game.player.x - blackHoleSize) / (100-blackHoleSize) > 0.5) {
+                specialGravityParameter = gravitationPower;
                 gravitationPower = (float) ((Main.game.player.x - blackHoleSize) / (100 - blackHoleSize) - 0.4); // 0.1 ->0.3
                 gravitationPower *= 10; // 3 -> 12
 //                gravitationPower *= defaultGravitationPower;
                 gravitationPower = (float) Math.pow(gravitationPower, 4);
+                specialGravityParameter = specialGravityParameter / gravitationPower;
+                specialGravityParameter = 1 / specialGravityParameter;
             }
         }
         else {
+            specialGravityParameter = 1;
             Main.game.player.superBonus = false;
             gravitationPower = defaultGravitationPower;
         }

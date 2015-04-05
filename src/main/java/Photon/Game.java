@@ -13,7 +13,6 @@ import Photon.GameObjects.GOPhoton.GOPhotonFon;
 import Photon.GameObjects.GOPhoton.GOPoint;
 import Photon.GameObjects.GOPhoton.GOPlayer;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -175,6 +174,12 @@ public class Game implements IGame{
                 if(Keyboard.isKeyDown(Keyboard.KEY_O)){
                     pause = false;
                 }
+                if(Keyboard.isKeyDown(Keyboard.KEY_I)){
+                    player.immortal = true;
+                }
+                if(Keyboard.isKeyDown(Keyboard.KEY_U)){
+                    player.immortal = false;
+                }
                 if (player2 != null) {
                     if(Keyboard.isKeyDown(Keyboard.KEY_UP) && !player2.isBot){
                         if(player2.freak <= player2.maxFreak)
@@ -184,22 +189,28 @@ public class Game implements IGame{
                 break;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_I)){
-            player.immortal = 99999999;
+            player.immortalityDie = 99999999;
             player.die = false;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_O)) {
-            player.immortal = 0;
+            player.immortalityDie = 0;
             player.die = false;
         }
     }
     @Override
     public void update() {
-        if(pause)
+        Main.mouseGrabbed(mouseGrabbed);
+        if(pause) {
+            mouseGrabbed = false;
             return;
+        }
+        else {
+            mouseGrabbed = true;
+        }
+        Main.mouseGrabbed(mouseGrabbed);
         script();
         GameConfiguration.update();
 //        prism.update();
-        Main.mouseGrabbed(mouseGrabbed);
         if(blackHole != null)
             blackHole.update();
 

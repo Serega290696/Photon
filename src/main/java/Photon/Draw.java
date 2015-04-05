@@ -225,7 +225,8 @@ public class Draw {
                 "        Time: " + Game.integerTime +
                 "        Speed: " + (int)(Game.moveOnStep*100) +
                 "        Factor: " + (int)(Main.game.player.factor) +
-                "        Gravity: " + (Main.game.blackHole.gravitationPower) +
+                "        Gravity: " + (Main.game.blackHole.gravitationPower/Game.blackHole.specialGravityParameter) +
+                " (" + Game.blackHole.specialGravityParameter + ")" +
                 "       " + (Main.game.player.prism) + " : " + (Main.game.player.obstacles)
                 , org.newdawn.slick.Color.white);
         for(int i = 0; i < Game.players.size(); i++) {

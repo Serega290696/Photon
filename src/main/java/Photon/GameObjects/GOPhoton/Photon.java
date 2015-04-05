@@ -17,7 +17,8 @@ public abstract class Photon extends GO {
     public float freak = 0.12f;
     public float playerYShift = 50 * Main.ratio;
 
-    public int immortal  = 0;
+    public int immortalityDie = 0;
+    public boolean immortal = false;
     public int timeToRecovery  = 1000;
     public float shiftObAlongX = 0;
 //    public int hitPoints  = 0;
