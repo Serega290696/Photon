@@ -16,12 +16,12 @@ public class GOPlayer extends Photon {
 //    public float playerYShift = 50 * Main.ratio;
     public float score = 0;
     public float scoreBonusBySecond = 1;
-    public float scoreBonusByPrism = 100;
-    public float scoreBonusByObstacle = -50;
+    public float scoreBonusByPrism = GameConfiguration.scoreBonusByPrism;
+    public float scoreBonusByObstacle = GameConfiguration.scoreBonusByObstacle;
     public float factor = 1;
     public boolean superBonus = false;
-    private float prismGravitationParameter = Main.game.blackHole.defaultGravitationPower * 0.25f;
-    private float obstacleGravitationParameter =  - Main.game.blackHole.defaultGravitationPower * 0.05f;
+    private float prismGravitationParameter = GameConfiguration.prismGravitationParameter;
+    private float obstacleGravitationParameter =  GameConfiguration.obstacleGravitationParameter;
     public int prism = 0;
     public int obstacles = 0;
     public float score2 = 0;
@@ -66,7 +66,7 @@ public class GOPlayer extends Photon {
 
         float temp = lengthTrajectory / Game.moveOnStep -1;
         for(int i = 0; ; i++) {
-            path.add(new GOPoint(i * Game.moveOnStep*1.0f, defaultY, this));
+            path.add(new GOPoint(i * Game.moveOnStep*0.5f, defaultY, this));
 //            path.add(new GOPoint(i * 0.75f, defaultY, this));
             if(i * Game.moveOnStep > Main.dWidth)
                 break;
@@ -98,7 +98,7 @@ public class GOPlayer extends Photon {
 
 
     public void update() {
-
+        Game.blackHole.gravitationParameter = GameConfiguration.gravitationParameter;
         if(immortal > 0) {
             immortal -= Main.delay;
         }
@@ -221,7 +221,7 @@ public class GOPlayer extends Photon {
         immortal = timeToRecovery;
         die = true;
         color = 1;
-        Main.game.blackHole.gravitationParameter += obstacleGravitationParameter;
+        GameConfiguration.gravitationParameter += obstacleGravitationParameter;
 //        hitPoints--;
         setScore(scoreBonusByObstacle);
 //        for(GOPlayer obPlayer : Game.players) {
@@ -241,7 +241,7 @@ public class GOPlayer extends Photon {
     public void collisionWithPrism() {
         prism++;
         setScore(scoreBonusByPrism);
-        Main.game.blackHole.gravitationParameter += prismGravitationParameter;
+        GameConfiguration.gravitationParameter += prismGravitationParameter;
 //        immortal = timeToRecovery;
 //        setScore(scoreBonusByPrism);
 //        shiftObAlongX += -penalty*2;

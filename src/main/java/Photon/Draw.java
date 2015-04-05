@@ -87,7 +87,7 @@ public class Draw {
 //            glColor3f(0.5f,0.5f,0.5f);
 //            glColor4f(0.8f, 0.2f, 0.2f, opacity);
             glTranslatef(x, y, 0);
-            glRotatef(-rotate, 0, 0, 1);
+            glRotatef((float) (-rotate), 0, 0, 1);
             glEnable(GL_POLYGON_SMOOTH);
             glBegin(GL_QUADS);
             {
@@ -230,8 +230,8 @@ public class Draw {
                 , org.newdawn.slick.Color.white);
         for(int i = 0; i < Game.players.size(); i++) {
             font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 5*Main.em*Main.ratio, Game.players.get(i).name, org.newdawn.slick.Color.white);
-            font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 10*Main.em*Main.ratio, "Score: " + String.valueOf(Game.players.get(i).score), org.newdawn.slick.Color.white);
-            font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 15*Main.em*Main.ratio, "Score: " + String.valueOf(Game.players.get(i).score2), org.newdawn.slick.Color.white);
+            font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 10*Main.em*Main.ratio, "Score: " + String.valueOf(Math.round(Game.players.get(i).score)), org.newdawn.slick.Color.white);
+            font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 15*Main.em*Main.ratio, "Score: " + String.valueOf(Math.round(Game.players.get(i).score2)), org.newdawn.slick.Color.white);
             }
     }
     public static void fon2(float x, float y, float sx, float sy, float rotate) {
@@ -368,11 +368,8 @@ public class Draw {
     public static void musicStop(Music music) {
         switch(music) {
             case FON1:
-                System.out.println(fonSound1.getPosition() + " : " + fonSound1.isPlaying());
                 fonSound1.stop();
-                System.out.println(fonSound1.getPosition() + " : " + fonSound1.isPlaying());
 
-                System.out.println("OU Yeah!!");
                 break;
         }
     }

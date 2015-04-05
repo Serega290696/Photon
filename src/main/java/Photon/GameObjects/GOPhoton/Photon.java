@@ -26,7 +26,7 @@ public abstract class Photon extends GO {
     public float lengthTrajectory = 30;
 
     public boolean die = false;
-    public static float minFreak = 0.15f;
+    public static float minFreak = 0.12f;
     public static final float maxFreak = 0.5f;
     public float speed = 0; // 0
 

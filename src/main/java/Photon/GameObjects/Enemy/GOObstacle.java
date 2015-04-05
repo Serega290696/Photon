@@ -17,7 +17,7 @@ public class GOObstacle extends GO{
         this.figure = DrawFigure.RECT;
         this.sx = (float) (Math.pow(Game.level, 0.5f) + Math.random() * (2+Math.pow(Game.level, 0.5f)));
         if(this.sx >= maxSize) this.sx = maxSize;
-        this.sx *= 0.4;
+        this.sx *= GameConfiguration.moveOnStep * 0.4;
         this.sy = sx;
         this.defaultSx = sx;
         this.y = (float) (Game.players.get(0).playerYShift + Game.players.get(0).defAmplitude * 2*(Math.random() - 0.5f));
@@ -105,7 +105,7 @@ public class GOObstacle extends GO{
     }
     @Override
     public void render() {
-        Draw.draw(figure, x, y, sx, sy, rotate, color, opacity);
+        Draw.draw(figure, x, y, sx, sy, (float) (rotate + Math.random() * 25), color, opacity);
     }
 
 }

@@ -2,6 +2,7 @@ package Photon.GameObjects.GOPhoton;
 
 import Photon.*;
 import Photon.Enums.DrawFigure;
+import org.lwjgl.input.Mouse;
 
 /**
  * Created by Serega on 03.03.2015.
@@ -11,7 +12,7 @@ public class GOPoint extends Photon {
     public float defaultSx;
     public float defaultSy;
 
-    public static final float moveOnStep = Game.moveOnStep;
+    public static float moveOnStep = Game.moveOnStep;
     public Photon player;
     public float playerOldX;
 
@@ -61,9 +62,10 @@ public class GOPoint extends Photon {
 
     @Override
     public void update() {
+
+        moveOnStep = Game.moveOnStep;
         float temp;//a
         temp = 1 / player.lengthTrajectory;
-
         if(x > player.getX()) {
             sy = player.lengthTrajectory - (this.x - player.x);
             if(sy <= 0)

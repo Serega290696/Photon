@@ -33,9 +33,9 @@ public class Game implements IGame{
     public static ArrayList<GO> allObjects = new ArrayList<GO>();
     public static ArrayList<GOObstacle> obstacles = new ArrayList<GOObstacle>();
     public static ArrayList<GOPrism> bonuses = new ArrayList<GOPrism>();
-    public static GOPrism prism;
+//    public static GOPrism prism;
     public static int controlMode = 1;
-    public static float freakChanger = (float) (Math.PI / Main.fps /5);
+    public static float freakChanger = (float) (Math.PI / Main.fps /6);
 
     public static float distance = 0;
 
@@ -46,13 +46,14 @@ public class Game implements IGame{
     public static float timeCfCreationBonus = 0;
 
 //    public static float moveOnStep = 20f/ Main.em;
-    public static float defMoveOnStep = 5f/ Main.em;
-    public static float moveOnStep = 13f/ Main.em;
+    public static float defMoveOnStep = GameConfiguration.defMoveOnStep;
+    public static float moveOnStep;
     public static boolean somethingWasChanged = false;
     public static int level = 1;
     public static boolean nowNewSecond = false;
     public static boolean mute = true;
     public static boolean mouseGrabbed = true;
+    public static boolean pause = true;
 
     public Game() {
         clear();
@@ -75,7 +76,7 @@ public class Game implements IGame{
         if(!Draw.musicIsPlaying(Music.FON1) && !mute) {
             Draw.musicPlay(Music.FON1);
         }
-        prism = new GOPrism();
+//        prism = new GOPrism();
     }
 
     @Override
@@ -90,11 +91,11 @@ public class Game implements IGame{
         moveOnStep = defMoveOnStep;
         if(Draw.musicIsPlaying(Music.FON1))
             Draw.musicStop(Music.FON1);
+        new GameConfiguration();
     }
 
     @Override
     public void getInput() {
-
         float b = (float) (15f / Main.fps);
         switch(controlMode) {
             case 3:
@@ -162,6 +163,18 @@ public class Game implements IGame{
                 if(Keyboard.isKeyDown(Keyboard.KEY_9)){
                     mouseGrabbed = false;
                 }
+                if(Keyboard.isKeyDown(Keyboard.KEY_W)){
+                    level++;
+                }
+                if(Keyboard.isKeyDown(Keyboard.KEY_S)){
+                    level--;
+                }
+                if(Keyboard.isKeyDown(Keyboard.KEY_P)){
+                    pause = true;
+                }
+                if(Keyboard.isKeyDown(Keyboard.KEY_O)){
+                    pause = false;
+                }
                 if (player2 != null) {
                     if(Keyboard.isKeyDown(Keyboard.KEY_UP) && !player2.isBot){
                         if(player2.freak <= player2.maxFreak)
@@ -181,8 +194,11 @@ public class Game implements IGame{
     }
     @Override
     public void update() {
+        if(pause)
+            return;
         script();
-        prism.update();
+        GameConfiguration.update();
+//        prism.update();
         Main.mouseGrabbed(mouseGrabbed);
         if(blackHole != null)
             blackHole.update();
@@ -232,16 +248,16 @@ public class Game implements IGame{
 //            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
 //            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
         }
-        if(integerTime%10 == 0) {
+        if(integerTime%5 == 0) {
             level++;
-            if(moveOnStep <= 5)
-                moveOnStep += 0.05f;
         }
+        moveOnStep = GameConfiguration.moveOnStep;
 
         if(time - timeCfCreationObstacle >= 0.5 + (0.75f / Math.pow(level, 0.5f))) {
             obstacles.add(new GOObstacle());
             timeCfCreationObstacle = time;
         }
+//        if(time - timeCfCreationBonus >= 1.0 + (5.0f / Math.pow(level, 0.5f))) {
         if(time - timeCfCreationBonus >= 1.0 + (5.0f / Math.pow(level, 0.5f))) {
             if(!obstacles.isEmpty()) {
                 bonuses.add(new GOPrism());
@@ -296,7 +312,7 @@ public class Game implements IGame{
             bonus.render();
         }
         Draw.gameInterface();
-        prism.render();
+//        prism.render();
     }
     @Override
     public void delObj(GO removeOb) {

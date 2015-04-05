@@ -71,8 +71,8 @@ public class Main {
 
                 Keyboard.create();
                 Mouse.create();
-                mouseGrabbed(false);
-//                Mouse.setGrabbed(true);
+//                mouseGrabbed(false);
+                Mouse.setGrabbed(false);
             } catch (LWJGLException e) {
                 e.printStackTrace();
             }

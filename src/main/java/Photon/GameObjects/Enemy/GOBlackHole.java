@@ -12,7 +12,7 @@ public class GOBlackHole extends GO {
     public float gravitationPower = 0;
     public float maxSpeedGravitation = 25;
     public float gravitationParameter = 0;
-    public float defaultGravitationPower = 1;
+    public float defaultGravitationPower = GameConfiguration.defaultGravitationPower;
 
     public GOBlackHole() {
 
@@ -24,6 +24,8 @@ public class GOBlackHole extends GO {
         figure = DrawFigure.RECT;
         color = 7;
         opacity = 1.0f;
+        defaultGravitationPower = GameConfiguration.defaultGravitationPower;
+        gravitationParameter = defaultGravitationPower;
 //        x = -100/2;
 //        y = 100/2*Main.ratio;
 //        sx = 100*1.2f;
@@ -40,6 +42,7 @@ public class GOBlackHole extends GO {
 
     @Override
     public void update() {
+        gravitationParameter = GameConfiguration.gravitationParameter;
 //        float growth = 0.1f;
 //        if(gravitationPower < maxSpeedGravitation)
 //            gravitationPower += growth / Main.fps;
@@ -74,14 +77,15 @@ public class GOBlackHole extends GO {
     }
 
     private void setGravitationPower() {
+        gravitationParameter = GameConfiguration.gravitationParameter;
         gravitationPower = defaultGravitationPower;
         float blackHoleSize = (this.x + this.sx/2);
-        if( (Main.game.player.x - blackHoleSize) / (100-blackHoleSize) > 0.6) {
+        if( (Main.game.player.x - blackHoleSize) / (100-blackHoleSize) > 0.45) {
             Main.game.player.superBonus = true;
-            if( (Main.game.player.x - blackHoleSize) / (100-blackHoleSize) > 0.8) {
-                gravitationPower = (float) ((Main.game.player.x - blackHoleSize) / (100 - blackHoleSize) - 0.7); // 0.1 ->0.3
+            if( (Main.game.player.x - blackHoleSize) / (100-blackHoleSize) > 0.5) {
+                gravitationPower = (float) ((Main.game.player.x - blackHoleSize) / (100 - blackHoleSize) - 0.4); // 0.1 ->0.3
                 gravitationPower *= 10; // 3 -> 12
-                gravitationPower *= defaultGravitationPower;
+//                gravitationPower *= defaultGravitationPower;
                 gravitationPower = (float) Math.pow(gravitationPower, 4);
             }
         }
