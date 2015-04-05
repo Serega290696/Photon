@@ -38,7 +38,8 @@ public class Draw {
     private static final String FONTS_PATH = CONTENT_PATH+"fonts/";
 
 
-    private static Texture fon1;
+    public static Texture fon1;
+    public static Texture fon3;
     private static Audio fonSound1;
 //    public static long curTime;
 
@@ -62,7 +63,9 @@ public class Draw {
                 break;
             case CIRCLE: circle(x, y, sx, sy, color, opacity);
                 break;
-            case FON: fon(x, y, sx, sy, rotate);
+            case FON: fon2(x, y, sx, sy, rotate);
+                break;
+            case FON2: bigFon(x, y, sx, sy);
                 break;
             default:
                 break;
@@ -100,16 +103,95 @@ public class Draw {
     public static void triangle(float x, float y, float sx, float sy, float rotate, int color, float opacity) {
         glPushMatrix();
         {
+
+            float side = sx;
+            float r1 = 1;
+            float g1 = 1;
+            float b1 = 1;
             chooseColor(color, opacity);
 //            glColor3f(0.5f,0.5f,0.5f);
             glTranslatef(x, y, 0);
             glRotatef(-rotate, 0, 0, 1);
             glEnable(GL_POLYGON_SMOOTH);
-            glBegin(GL_POLYGON);
+            glBegin(GL_TRIANGLES);
             {
                 glVertex2f(-sx / 2, -sy / 2);
-                glVertex2f(-sx/2, sy/2);
-                glVertex2f((float) ((Math.pow(3, 0.5f)-1)/2*sx), 0);
+                glVertex2f(-sx / 2, sy / 2);
+                glVertex2f((float) ((Math.pow(3, 0.5f) - 1) / 2 * sx), 0);
+            }
+            glEnd();
+        }
+        glPopMatrix();
+    }
+
+    public static void peramida(float x, float y, float sx, float sy, float rotate, int color, float opacity) {
+        glPushMatrix();
+        {
+            float side = sx;
+            float r1 = 1;
+            float g1 = 1;
+            float b1 = 1;
+            chooseColor(color, opacity);
+//            glColor3f(0.5f,0.5f,0.5f);
+            glTranslatef(x, y, 0);
+            glRotatef(-rotate, 0, 1, 1);
+            glEnable(GL_POLYGON_SMOOTH);
+            glBegin(GL_TRIANGLES);
+            {
+                glBegin(GL_TRIANGLES);
+
+                glColor3d(r1, g1, b1);
+                glVertex3d(side, -side, -side);
+                glColor3d(r1, g1, b1);
+                glVertex3d(side, -side, side);
+                glColor3d(r1/2, g1/2, b1/2);
+                glVertex3d(0.0, side, 0.0);
+                glEnd();
+
+                glBegin(GL_TRIANGLES);
+                glColor3d(1.0, 0.84, 0.0);  // Сделали боковую сторону желтой
+
+                glColor3d(r1, g1, b1);
+                glVertex3d(side, -side, side);
+                glColor3d(r1, 0, 0);
+                glVertex3d(-side, -side,side);
+                glVertex3d(0.0, side, 0.0);
+                glEnd();
+
+                glBegin(GL_TRIANGLES);
+                glColor3d(0.94, 0.5, 0.5);// Сделали сторону  розовой
+
+                glColor3d(r1, g1, b1);
+                glVertex3d(-side, -side, side);
+                glColor3d(0, 0, 1);
+                glVertex3d(-side, -side, -side);
+                glVertex3d(0.0, side, 0.0);
+                glEnd();
+
+                glBegin(GL_TRIANGLES);
+                glColor3d(0.0, 1.0, 0.0);  // Сделали сторону  светло зеленой
+
+                glColor3d(r1, g1, b1);
+                glVertex3d(-side, -side, -side);
+                glColor3d(0, g1, 1);
+                glVertex3d(side, -side, -side);
+                glVertex3d(0.0, side, 0.0);
+                glEnd();
+
+                glBegin(GL_QUADS);// основание пирамиды
+                glColor3d(1.0, 0.51, 0.28); // сделали основание рыжим
+
+                glColor3d(r1, g1, b1);
+                glVertex3d(side, -side, side);
+                glColor3d(r1, g1, 0);
+                glVertex3d(-side, -side, side);
+                glVertex3d(-side, -side, -side);
+                glColor3d(r1, g1, b1);
+                glVertex3d(side, -side, -side);
+                glEnd();
+//                glVertex2f(-sx / 2, -sy / 2);
+//                glVertex2f(-sx/2, sy/2);
+//                glVertex2f((float) ((Math.pow(3, 0.5f)-1)/2*sx), 0);
             }
             glEnd();
         }
@@ -130,7 +212,7 @@ public class Draw {
                 glVertex2f(-sx / 2, -sy / 2);
                 glVertex2f(-sx / 2, sy / 2);
                 glVertex2f(sx / 2, sy / 2);
-                glVertex2f(sx/2,-sy/2);
+                glVertex2f(sx / 2, -sy / 2);
             }
             glEnd();
         }
@@ -157,21 +239,48 @@ public class Draw {
         {
             glEnable(GL_TEXTURE_2D);
 //            glBindTexture(GL_TEXTURE_2D, 0);
-            glColor3f(0.5f,0.5f,0.5f);
+            glColor3f(0.5f, 0.5f, 0.5f);
             glTranslatef(x, y, 0);
-            sx*=0.9;
+//            sx*=0.9;
             glRotatef(-rotate, 0, 0, 1);
             fon1.bind();
             glBegin(GL_QUADS);
             {
                 glTexCoord2f(0, 0);
                 glVertex2f(-sx / 2, -sy / 2);
-                glTexCoord2f(0, 1);
+                glTexCoord2f(0, fon1.getHeight());
                 glVertex2f(-sx / 2, sy / 2);
-                glTexCoord2f(1, 1);
+                glTexCoord2f(fon1.getWidth(), fon1.getHeight());
                 glVertex2f(sx / 2, sy / 2);
-                glTexCoord2f(1, 0);
+                glTexCoord2f(fon1.getWidth(), 0);
                 glVertex2f(sx/2,-sy/2);
+            }
+            glEnd();
+        }
+        glPopMatrix();
+//        fon1.release();
+    }
+    public static void bigFon(float x, float y, float sx, float sy) {
+        glPushMatrix();
+        {
+            glEnable(GL_TEXTURE_2D);
+//            glBindTexture(GL_TEXTURE_2D, 0);
+            glColor3f(1.0f, 1.0f, 1.0f);
+            glColor3f(0.4f, 0.4f, 0.8f);
+            glTranslatef(x, y, 0);
+//            sx*=0.9;
+            glRotatef(-0, 0, 0, 1);
+            fon3.bind();
+            glBegin(GL_QUADS);
+            {
+                glTexCoord2f(0, 0);
+                glVertex2f(0, 0);
+                glTexCoord2f(0, fon3.getHeight());
+                glVertex2f(0, sy);
+                glTexCoord2f(fon3.getWidth(), fon3.getHeight());
+                glVertex2f(sx, sy);
+                glTexCoord2f(fon3.getWidth(), 0);
+                glVertex2f(sx,0);
             }
             glEnd();
         }
@@ -270,6 +379,7 @@ public class Draw {
     public static void init() {
         try {
             fon1 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(TEXTURE_PATH + "fon/fon1.png"));
+            fon3 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(TEXTURE_PATH + "fon/fon4.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -6,7 +6,7 @@ package Photon.Enums;
 public enum DrawFigure {
     RECT,
     CIRCLE, CIRCLE_2,
-    FON,
+    FON, FON2,
     TRIANGLE,
 
     ;

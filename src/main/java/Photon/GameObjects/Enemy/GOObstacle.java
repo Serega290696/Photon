@@ -50,6 +50,33 @@ public class GOObstacle extends GO{
                     this.addToDodgedObstacle = true;
                     obPlayer.setDodgedObstacle();
                 }
+//                if(defaultColor == obPlayer.color && obPlayer.immortal > 0)
+//                    defaultColor = 1;
+                continue;
+            }
+            if(obPlayer.isClashWith(this) && Math.abs(x - obPlayer.getX()) < obPlayer.lengthTrajectory) {
+                color = 1;
+                break;
+            }
+            else
+                color = defaultColor;
+        }
+        if(x < -sx*2)
+            delGO(this);
+        rotate += (float)(90 / Main.fps);
+//        rotate += (float)(5f/Math.pow(3f, 1.4f));
+        move();
+    }
+
+    public void interactionWithPlayer(GO ob) {
+        for(GOPlayer obPlayer : Game.players) {
+//            if(obPlayer.danger) continue;
+            if(x < obPlayer.x) {
+                color = defaultColor;
+                if(defaultColor != 0 && defaultColor != 1 && defaultColor == obPlayer.color && !this.addToDodgedObstacle && obPlayer.immortal <= 0) {
+                    this.addToDodgedObstacle = true;
+                    obPlayer.setDodgedObstacle();
+                }
                 if(defaultColor == obPlayer.color && obPlayer.immortal > 0)
                     defaultColor = 1;
                 continue;
@@ -63,12 +90,7 @@ public class GOObstacle extends GO{
             else
                 color = defaultColor;
         }
-        if(x < -sx*2)
-            delGO(this);
-        rotate += (float)(5f/Math.pow(3f, 1.4f));
-        move();
     }
-
     public void delGO(GO ob) {
         Game.somethingWasChanged = true;
         Game.obstacles.remove(ob);

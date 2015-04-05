@@ -13,6 +13,7 @@ import Photon.GameObjects.GOPhoton.GOPhotonFon;
 import Photon.GameObjects.GOPhoton.GOPoint;
 import Photon.GameObjects.GOPhoton.GOPlayer;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class Game implements IGame{
     public static ArrayList<GO> allObjects = new ArrayList<GO>();
     public static ArrayList<GOObstacle> obstacles = new ArrayList<GOObstacle>();
     public static ArrayList<GOPrism> bonuses = new ArrayList<GOPrism>();
+    public static GOPrism prism;
     public static int controlMode = 1;
     public static float freakChanger = (float) (Math.PI / Main.fps /5);
 
@@ -44,12 +46,13 @@ public class Game implements IGame{
     public static float timeCfCreationBonus = 0;
 
 //    public static float moveOnStep = 20f/ Main.em;
-    public static float defMoveOnStep = 13f/ Main.em;
+    public static float defMoveOnStep = 5f/ Main.em;
     public static float moveOnStep = 13f/ Main.em;
     public static boolean somethingWasChanged = false;
     public static int level = 1;
     public static boolean nowNewSecond = false;
     public static boolean mute = true;
+    public static boolean mouseGrabbed = true;
 
     public Game() {
         clear();
@@ -72,6 +75,7 @@ public class Game implements IGame{
         if(!Draw.musicIsPlaying(Music.FON1) && !mute) {
             Draw.musicPlay(Music.FON1);
         }
+        prism = new GOPrism();
     }
 
     @Override
@@ -152,6 +156,12 @@ public class Game implements IGame{
                     if(!Draw.musicIsPlaying(Music.FON1))
                         Draw.musicPlay(Music.FON1);
                 }
+                if(Keyboard.isKeyDown(Keyboard.KEY_0)){
+                    mouseGrabbed = true;
+                }
+                if(Keyboard.isKeyDown(Keyboard.KEY_9)){
+                    mouseGrabbed = false;
+                }
                 if (player2 != null) {
                     if(Keyboard.isKeyDown(Keyboard.KEY_UP) && !player2.isBot){
                         if(player2.freak <= player2.maxFreak)
@@ -172,9 +182,11 @@ public class Game implements IGame{
     @Override
     public void update() {
         script();
+        prism.update();
+        Main.mouseGrabbed(mouseGrabbed);
         if(blackHole != null)
-
             blackHole.update();
+
         for(GO ob : allObjects) {
             ob.update();
         }
@@ -254,12 +266,13 @@ public class Game implements IGame{
     public void render() {
 //        distance += 0.2;
         if(distance*moveOnStep >= 20) distance = 0;
-        Draw.draw(DrawFigure.FON, 10 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-        Draw.draw(DrawFigure.FON, 30 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-        Draw.draw(DrawFigure.FON, 50 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-        Draw.draw(DrawFigure.FON, 70 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-        Draw.draw(DrawFigure.FON, 90 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-        Draw.draw(DrawFigure.FON, 110- distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
+//        Draw.draw(DrawFigure.FON, 10 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
+//        Draw.draw(DrawFigure.FON, 30 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
+//        Draw.draw(DrawFigure.FON, 50 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
+//        Draw.draw(DrawFigure.FON, 70 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
+//        Draw.draw(DrawFigure.FON, 90 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
+//        Draw.draw(DrawFigure.FON, 110- distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
+        Draw.draw(DrawFigure.FON2, 0, 0, 100, 100 * Main.ratio);
 
         for(GO ob : allObjects) {
             ob.render();
@@ -283,6 +296,7 @@ public class Game implements IGame{
             bonus.render();
         }
         Draw.gameInterface();
+        prism.render();
     }
     @Override
     public void delObj(GO removeOb) {

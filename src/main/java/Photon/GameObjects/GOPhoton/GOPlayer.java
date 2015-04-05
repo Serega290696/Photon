@@ -66,10 +66,8 @@ public class GOPlayer extends Photon {
 
         float temp = lengthTrajectory / Game.moveOnStep -1;
         for(int i = 0; ; i++) {
-//            path.add(new GOPoint(i * Game.moveOnStep, myFunction(t + temp*freak), this));
-            path.add(new GOPoint(i * Game.moveOnStep, defaultY, this));
-//            if(i * Game.moveOnStep > x + lengthTrajectory)
-//                break;
+            path.add(new GOPoint(i * Game.moveOnStep*1.0f, defaultY, this));
+//            path.add(new GOPoint(i * 0.75f, defaultY, this));
             if(i * Game.moveOnStep > Main.dWidth)
                 break;
         }
@@ -279,6 +277,7 @@ public class GOPlayer extends Photon {
     public void setScore(float a) {
         float delta = Main.game.blackHole.x + Main.game.blackHole.sx/2;
         factor = 1 + (x-delta) / (100-delta) * 2 * (superBonus?5:1) * (Game.level/3);
+        factor *= 0.1;
 //        a *= 1 + (x-delta) / (100-delta) * 2;
 //        if(superBonus)
 //            a *= 5;

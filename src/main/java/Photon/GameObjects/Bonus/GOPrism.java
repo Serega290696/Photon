@@ -45,7 +45,8 @@ public class GOPrism extends GO {
         }
         if(x < -sx*2)
             delGO(this);
-        rotate += (float)(1f/Math.pow(3f, 1.4f));
+        rotate += (float)(90 / Main.fps);
+//        rotate += (float)(1f/Math.pow(3f, 1.4f));
         move();
     }
 
