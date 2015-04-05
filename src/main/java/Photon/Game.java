@@ -53,7 +53,7 @@ public class Game implements IGame{
     public static boolean nowNewSecond = false;
     public static boolean mute = true;
     public static boolean mouseGrabbed = true;
-    public static boolean pause = true;
+    public static boolean pause = false;
 
     public Game() {
         clear();

@@ -2,21 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e4c0460-1b50-4aae-9932-e30fb4078c8a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameObjects/Enemy/GOBlackHole.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameObjects/Enemy/GOBlackHole.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/GOPlayer.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/GOPlayer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/GOPoint.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/GOPoint.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/Game.class" afterPath="$PROJECT_DIR$/target/classes/Photon/Game.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/Main.class" afterPath="$PROJECT_DIR$/target/classes/Photon/Main.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Photon_jar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/Draw.class" afterPath="$PROJECT_DIR$/target/classes/Photon/Draw.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameObjects/Enemy/GOObstacle.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameObjects/Enemy/GOObstacle.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/Photon.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/Photon.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/PhotonSql_jar/PhotonSql.jar" afterPath="$PROJECT_DIR$/out/artifacts/PhotonSql_jar/PhotonSql.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/Draw.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/Draw.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/Enemy/GOBlackHole.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/Enemy/GOBlackHole.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/Enemy/GOObstacle.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/Enemy/GOObstacle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPlayer.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPoint.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPoint.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/Game.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/Photon.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/Photon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/PhotonSql_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/PhotonSql_jar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PhotonSql.iws" />
@@ -113,8 +105,8 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46933332" vertical-offset="2130" max-vertical-offset="5678">
-              <caret line="163" column="41" selection-start-line="163" selection-start-column="41" selection-end-line="163" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.3693108" vertical-offset="974" max-vertical-offset="5678">
+              <caret line="91" column="43" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
               <folding>
                 <element signature="e#896#906#0" expanded="true" />
                 <element signature="e#970#983#0" expanded="true" />
@@ -202,10 +194,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1918" />
-    <option name="height" value="1038" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -456,7 +448,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/jars" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -771,7 +763,7 @@
       <updated>1427976982814</updated>
       <workItem from="1427976990726" duration="28371000" />
       <workItem from="1428055620043" duration="15075000" />
-      <workItem from="1428238758043" duration="22681000" />
+      <workItem from="1428238758043" duration="23626000" />
     </task>
     <task id="LOCAL-00001" summary="v1.1">
       <created>1428189744083</created>
@@ -797,20 +789,26 @@
       <option name="project" value="LOCAL" />
       <updated>1428255248828</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="v1.2">
+      <created>1428272346984</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1428272346984</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66127000" />
+    <option name="totallyTimeSpent" value="67072000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1918" height="1038" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32745314" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3264865" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -818,12 +816,12 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12789416" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12432432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14854683" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14712153" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22604951" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2238806" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -853,7 +851,8 @@
     </option>
     <MESSAGE value="v1.1" />
     <MESSAGE value="v1.1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.1.1" />
+    <MESSAGE value="v1.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1237,8 +1236,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46933332" vertical-offset="2130" max-vertical-offset="5678">
-          <caret line="163" column="41" selection-start-line="163" selection-start-column="41" selection-end-line="163" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.3693108" vertical-offset="974" max-vertical-offset="5678">
+          <caret line="91" column="43" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
           <folding>
             <element signature="e#896#906#0" expanded="true" />
             <element signature="e#970#983#0" expanded="true" />
