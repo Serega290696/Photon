@@ -5,6 +5,7 @@ package Photon;
  */
 public class GameConfiguration {
 
+    public  static int playersAmount = 1;
 
     public static float scoreBonusByPrism = 100;
     public static float scoreBonusByObstacle = -50;
@@ -14,6 +15,9 @@ public class GameConfiguration {
     public static float defObstacleGravitationParameter =  - defaultGravitationPower * 0.1f;
     public static float prismGravitationParameter = defPrismGravitationParameter;
     public static float obstacleGravitationParameter =  defObstacleGravitationParameter;
+    public static float amplitude = 40 * Main.ratio / 2;
+
+
 
     public static float defMoveOnStep = 20f/ Main.em;
     public static float moveOnStep = defMoveOnStep;
@@ -34,8 +38,8 @@ public class GameConfiguration {
 
     public static void update() {
 
-        if(moveOnStep <= 5)
-            moveOnStep = defMoveOnStep + 0.01f * Game.level;
+        if(moveOnStep <= 8)
+            moveOnStep = defMoveOnStep + 0.05f * Game.level;
         prismGravitationParameter = (float) (defPrismGravitationParameter * (1 + 0.2 * Game.level));
         obstacleGravitationParameter = (float) (defObstacleGravitationParameter * (1 + 0.25 * Game.level));
 

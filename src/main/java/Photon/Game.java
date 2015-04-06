@@ -58,15 +58,29 @@ public class Game implements IGame{
         clear();
         controlMode = 2;
         try {
-            GOPlayer massOfPlayers[] = {
-                    player = new GOPlayer(50, 50*Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false),
-//                    player2 = new GOPlayer(20, 50*Main.ratio, 2, DrawFigure.CIRCLE, "Player#2", 5, false),
-//                    player2 = new GOPlayer(20, 50*Main.ratio, 2, DrawFigure.CIRCLE, "Player#2", 6, false),
-//                    new GOPlayer(30, 50*Main.ratio, 1, DrawFigure.CIRCLE, "miniBot", 3, true),
-//                    new GOPlayer(20, 50*Main.ratio, 1, DrawFigure.CIRCLE, "angryBot >.<", 3, true),
-//                    null
-//                    player = new GOPlayer(50, 50*Main.ratio, 3, DrawFigure.CIRCLE, "Serega", 2, false),
-            };
+//            GOPlayer massOfPlayers[] = new GOPlayer()[];
+            GOPlayer massOfPlayers[] = new GOPlayer[GameConfiguration.playersAmount];
+//            for(int i = 0; i < GameConfiguration.playersAmount; i++) {
+//                massOfPlayers[i] = player = new GOPlayer(50 + 10*i, 50*Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2 + i, false);
+//            }
+            if(GameConfiguration.playersAmount >= 1) {
+                massOfPlayers[0] =
+                        (player = new GOPlayer(55, 50 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false));
+
+            }
+            if(GameConfiguration.playersAmount >= 2) {
+                massOfPlayers[1] =
+                        (player2 = new GOPlayer(45, 50 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName + "_2", 5, false));
+            }
+//            massOfPlayers[] = {
+//                    player = new GOPlayer(60, 50*Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false),
+//                    player2 = new GOPlayer(40, 50*Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName + "_2", 5, false),
+////                    player2 = new GOPlayer(20, 50*Main.ratio, 2, DrawFigure.CIRCLE, "Player#2", 6, false),
+////                    new GOPlayer(30, 50*Main.ratio, 1, DrawFigure.CIRCLE, "miniBot", 3, true),
+////                    new GOPlayer(20, 50*Main.ratio, 1, DrawFigure.CIRCLE, "angryBot >.<", 3, true),
+////                    null
+////                    player = new GOPlayer(50, 50*Main.ratio, 3, DrawFigure.CIRCLE, "Serega", 2, false),
+//            };
             addAllPlayers(massOfPlayers);
         } catch(PlayerDoNotExist myE) {
             System.err.print(myE);
@@ -181,7 +195,7 @@ public class Game implements IGame{
                     player.immortal = false;
                 }
                 if (player2 != null) {
-                    if(Keyboard.isKeyDown(Keyboard.KEY_UP) && !player2.isBot){
+                    if(Keyboard.isKeyDown(Keyboard.KEY_Q) && !player2.isBot){
                         if(player2.freak <= player2.maxFreak)
                             player2.freak += freakChanger;
                     }
@@ -221,6 +235,7 @@ public class Game implements IGame{
             ob.update();
         }
         for(GOPlayer obPlayer : players) {
+            blackHole.setGravitationPower(obPlayer);
             obPlayer.update();
             for(GOPoint point : obPlayer.path) {
                 point.update();
@@ -313,9 +328,6 @@ public class Game implements IGame{
             }
             obPlayer.render();
         }
-        for(GO ob : allObjects) {
-            ob.render();
-        }
         for(GO ob : obstacles) {
             ob.render();
         }
@@ -349,6 +361,7 @@ public class Game implements IGame{
         User user = new User(player.name, (int)player.score, new Time((integerTime/3600), (integerTime/60)%60, integerTime%60), (new java.sql.Date( new Date().getTime() )));
         DBWorker.insert(user);
         DBWorker.getAll().toString();
+        players.remove(player);
 //        DBWorker.insert(player.name, (int)player.score, 1000, new Time(integerTime), (new java.sql.Date( new Date().getTime() )), 0);
 
 //        DBWorker.update();

@@ -174,7 +174,7 @@ public class GOPlayer extends Photon {
                 }
             }
         }
-        if(Game.players.size() == 1) {
+        if(Game.players.size() <= 5) {
 //            x += penalty / (Main.fps * 8); // число - количество секуд за которые компенсирует пенальти
 //            setX(x - (100 - x) / (100-(Main.game.blackHole.sx-100)/2) * Main.game.blackHole.maxSpeedGravitation / Main.fps);
             setX(x - (Main.game.blackHole.gravitationPower) / Main.fps * (1 + 1/this.x));

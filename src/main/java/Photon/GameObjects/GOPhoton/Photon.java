@@ -1,6 +1,7 @@
 package Photon.GameObjects.GOPhoton;
 
 import Photon.GO;
+import Photon.GameConfiguration;
 import Photon.GameObjects.Enemy.GOObstacle;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public abstract class Photon extends GO {
 
 
     public float defAmplitude = 20 * Main.ratio / 2;
-    public float amplitude = 20 * Main.ratio / 2;
+    public float amplitude = GameConfiguration.amplitude;
     public float freak = 0.12f;
     public float playerYShift = 50 * Main.ratio;
 
@@ -42,6 +43,13 @@ public abstract class Photon extends GO {
     public float myFunction(float tempT) {
         float tempY = (float) Math.sin(tempT);
         tempY *= amplitude;
+        tempY += playerYShift;
+        return tempY;
+    }
+
+    public float myFunction(float tempT, float amplitudeT) {
+        float tempY = (float) Math.sin(tempT);
+        tempY *= amplitudeT;
         tempY += playerYShift;
         return tempY;
     }

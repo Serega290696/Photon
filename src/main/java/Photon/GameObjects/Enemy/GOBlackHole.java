@@ -68,22 +68,23 @@ public class GOBlackHole extends GO {
             }
         }
         for(GOPlayer obPlayer : Game.players) {
-            setGravitationPower();
+//            setGravitationPower(obPlayer);
             if(Physics.checkCollisions(this, obPlayer)) {
                 Game.gameOver(obPlayer);
-                Main.restartGame();
+                if(Game.players.size() <= 1)
+                    Main.restartGame();
             }
         }
 //        sx = gravitationPower * 10;
     }
 
-    private void setGravitationPower() {
+    public void setGravitationPower(GOPlayer curPlayer) {
         gravitationParameter = GameConfiguration.gravitationParameter;
         gravitationPower = defaultGravitationPower;
         float blackHoleSize = (this.x + this.sx/2);
-        if( (Main.game.player.x - blackHoleSize) / (100-blackHoleSize) > 0.45) {
-            Main.game.player.superBonus = true;
-            if( (Main.game.player.x - blackHoleSize) / (100-blackHoleSize) > 0.5) {
+        if( (curPlayer.x - blackHoleSize) / (100-blackHoleSize) > 0.45) {
+            curPlayer.superBonus = true;
+            if( (curPlayer.x - blackHoleSize) / (100-blackHoleSize) > 0.5) {
                 specialGravityParameter = gravitationPower;
                 gravitationPower = (float) ((Main.game.player.x - blackHoleSize) / (100 - blackHoleSize) - 0.4); // 0.1 ->0.3
                 gravitationPower *= 10; // 3 -> 12

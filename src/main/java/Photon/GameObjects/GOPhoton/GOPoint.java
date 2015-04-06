@@ -47,13 +47,20 @@ public class GOPoint extends Photon {
 
     @Override
     public void move() {
+//        if(x <= Game.blackHole.sx) {
+//            amplitude *= 0.9f;
+//        }
         if(x > player.getX()) {
             y = player.myFunction(player.t + (x - player.x) / moveOnStep * player.freak);
 //            System.out.println(player.t + (x - player.x) / moveOnStep * player.freak);
         }
-        else
-            y = player.path.get(curPointNumber+1).y;
-
+        else {
+            float blSx = Game.blackHole.sx;
+            y = player.path.get(curPointNumber + 1).y - playerYShift;
+            y *= 0.97;
+            y += playerYShift;
+//            y = player.path.get(curPointNumber + 1).y;
+        }
         if(player.getClass().getSimpleName().equals("GOPhotonFon")) {
             x -= player.speed;
         }
