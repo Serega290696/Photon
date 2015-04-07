@@ -22,6 +22,7 @@ public interface IGame {
 
     public static int level = 5;
 
+    public void restartGame();
     public void clear();
     public void getInput();
     public void update();

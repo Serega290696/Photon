@@ -23,6 +23,7 @@ import java.util.Date;
  */
 public class Game implements IGame{
 
+    public static GameConfiguration gameConfiguration = new GameConfiguration();
 
     public static GOPlayer player;
     public static GOPlayer player2;
@@ -45,7 +46,8 @@ public class Game implements IGame{
     public static float timeCfCreationBonus = 0;
 
 //    public static float moveOnStep = 20f/ Main.em;
-    public static float defMoveOnStep = GameConfiguration.defMoveOnStep;
+
+    public static float defMoveOnStep = gameConfiguration.defMoveOnStep;
     public static float moveOnStep;
     public static boolean somethingWasChanged = false;
     public static int level = 1;
@@ -54,21 +56,22 @@ public class Game implements IGame{
     public static boolean mouseGrabbed = true;
     public static boolean pause = false;
 
+
     public Game() {
         clear();
         controlMode = 2;
         try {
 //            GOPlayer massOfPlayers[] = new GOPlayer()[];
-            GOPlayer massOfPlayers[] = new GOPlayer[GameConfiguration.playersAmount];
+            GOPlayer massOfPlayers[] = new GOPlayer[gameConfiguration.playersAmount];
 //            for(int i = 0; i < GameConfiguration.playersAmount; i++) {
 //                massOfPlayers[i] = player = new GOPlayer(50 + 10*i, 50*Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2 + i, false);
 //            }
-            if(GameConfiguration.playersAmount >= 1) {
+            if(gameConfiguration.playersAmount >= 1) {
                 massOfPlayers[0] =
                         (player = new GOPlayer(55, 50 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false));
 
             }
-            if(GameConfiguration.playersAmount >= 2) {
+            if(gameConfiguration.playersAmount >= 2) {
                 massOfPlayers[1] =
                         (player2 = new GOPlayer(45, 50 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName + "_2", 5, false));
             }
@@ -85,11 +88,16 @@ public class Game implements IGame{
         } catch(PlayerDoNotExist myE) {
             System.err.print(myE);
         }
-        allObjects.add(blackHole = new GOBlackHole());
+        allObjects.add(blackHole);
         if(!Draw.musicIsPlaying(Music.FON1) && !mute) {
             Draw.musicPlay(Music.FON1);
         }
 //        prism = new GOPrism();
+    }
+
+    @Override
+    public void restartGame() {
+
     }
 
     @Override
@@ -102,9 +110,9 @@ public class Game implements IGame{
 
         level = 1;
         moveOnStep = defMoveOnStep;
-        if(Draw.musicIsPlaying(Music.FON1))
-            Draw.musicStop(Music.FON1);
-        new GameConfiguration();
+//        if(Draw.musicIsPlaying(Music.FON1))
+//            Draw.musicStop(Music.FON1);
+
     }
 
     @Override
@@ -223,7 +231,7 @@ public class Game implements IGame{
         }
         Main.mouseGrabbed(mouseGrabbed);
         script();
-        GameConfiguration.update();
+        gameConfiguration.update();
 //        prism.update();
         if(blackHole != null)
             blackHole.update();
@@ -277,7 +285,7 @@ public class Game implements IGame{
         if(integerTime%5 == 0) {
             level++;
         }
-        moveOnStep = GameConfiguration.moveOnStep;
+        moveOnStep = gameConfiguration.moveOnStep;
 
         if(time - timeCfCreationObstacle >= 0.5 + (0.75f / Math.pow(level, 0.5f))) {
             obstacles.add(new GOObstacle());

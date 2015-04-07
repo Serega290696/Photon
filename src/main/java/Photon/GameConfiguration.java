@@ -5,22 +5,22 @@ package Photon;
  */
 public class GameConfiguration {
 
-    public  static int playersAmount = 1;
+    public int playersAmount = 1;
 
-    public static float scoreBonusByPrism = 100;
-    public static float scoreBonusByObstacle = -50;
-    public static float defaultGravitationPower = 5;
-    public static float gravitationParameter = 5;
-    public static float defPrismGravitationParameter = defaultGravitationPower * 0.25f;
-    public static float defObstacleGravitationParameter =  - defaultGravitationPower * 0.1f;
-    public static float prismGravitationParameter = defPrismGravitationParameter;
-    public static float obstacleGravitationParameter =  defObstacleGravitationParameter;
-    public static float amplitude = 40 * Main.ratio / 2;
+    public float scoreBonusByPrism = 100;
+    public float scoreBonusByObstacle = -50;
+    public float defaultGravitationPower = 5;
+    public float gravitationParameter = 5;
+    public float defPrismGravitationParameter = defaultGravitationPower * 0.25f;
+    public float defObstacleGravitationParameter =  - defaultGravitationPower * 0.1f;
+    public float prismGravitationParameter = defPrismGravitationParameter;
+    public float obstacleGravitationParameter =  defObstacleGravitationParameter;
+    public float amplitude = 40 * Main.ratio / 2;
 
 
 
-    public static float defMoveOnStep = 20f/ Main.em;
-    public static float moveOnStep = defMoveOnStep;
+    public float defMoveOnStep = 20f/ Main.em;
+    public float moveOnStep = defMoveOnStep;
 
     public GameConfiguration() {
         scoreBonusByPrism = 100;
@@ -36,7 +36,7 @@ public class GameConfiguration {
         moveOnStep = 13f/ Main.em;
     }
 
-    public static void update() {
+    public void update() {
 
         if(moveOnStep <= 8)
             moveOnStep = defMoveOnStep + 0.05f * Game.level;

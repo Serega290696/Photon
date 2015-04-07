@@ -1,6 +1,7 @@
 package Photon.GameObjects.GOPhoton;
 
 import Photon.GO;
+import Photon.Game;
 import Photon.GameConfiguration;
 import Photon.GameObjects.Enemy.GOObstacle;
 
@@ -14,7 +15,7 @@ public abstract class Photon extends GO {
 
 
     public float defAmplitude = 20 * Main.ratio / 2;
-    public float amplitude = GameConfiguration.amplitude;
+    public float amplitude = Game.gameConfiguration.amplitude;
     public float freak = 0.12f;
     public float playerYShift = 50 * Main.ratio;
 

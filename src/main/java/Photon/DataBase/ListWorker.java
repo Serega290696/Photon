@@ -7,12 +7,13 @@ import java.util.ArrayList;
  */
 public class ListWorker {
 
-
     public static ArrayList<User> getList() {
-        ArrayList<User> users = new ArrayList<User>();
-//        ArrayList<User> usersData = new ArrayList<User>();
         int begin = 1;
-        int range = 1;
+        int range = 10;
+        return getList(begin, range);
+    }
+    public static ArrayList<User> getList(int begin, int range) {
+        ArrayList<User> users;
         users = DBWorker.getAll();
         for(User user : users) {
             begin++;
@@ -24,4 +25,5 @@ public class ListWorker {
         }
         return users;
     }
+
 }

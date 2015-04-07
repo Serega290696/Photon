@@ -13,7 +13,7 @@ public class GOBlackHole extends GO {
     public float gravitationPower = 0;
     public float maxSpeedGravitation = 25;
     public float gravitationParameter = 0;
-    public float defaultGravitationPower = GameConfiguration.defaultGravitationPower;
+    public float defaultGravitationPower = Game.gameConfiguration.defaultGravitationPower;
 
     public GOBlackHole() {
 
@@ -25,7 +25,7 @@ public class GOBlackHole extends GO {
         figure = DrawFigure.RECT;
         color = 7;
         opacity = 1.0f;
-        defaultGravitationPower = GameConfiguration.defaultGravitationPower;
+        defaultGravitationPower = Game.gameConfiguration.defaultGravitationPower;
         gravitationParameter = defaultGravitationPower;
 //        x = -100/2;
 //        y = 100/2*Main.ratio;
@@ -43,7 +43,7 @@ public class GOBlackHole extends GO {
 
     @Override
     public void update() {
-        gravitationParameter = GameConfiguration.gravitationParameter;
+        gravitationParameter = Game.gameConfiguration.gravitationParameter;
 //        float growth = 0.1f;
 //        if(gravitationPower < maxSpeedGravitation)
 //            gravitationPower += growth / Main.fps;
@@ -79,7 +79,7 @@ public class GOBlackHole extends GO {
     }
 
     public void setGravitationPower(GOPlayer curPlayer) {
-        gravitationParameter = GameConfiguration.gravitationParameter;
+        gravitationParameter = Game.gameConfiguration.gravitationParameter;
         gravitationPower = defaultGravitationPower;
         float blackHoleSize = (this.x + this.sx/2);
         if( (curPlayer.x - blackHoleSize) / (100-blackHoleSize) > 0.45) {

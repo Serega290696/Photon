@@ -16,12 +16,12 @@ public class GOPlayer extends Photon {
 //    public float playerYShift = 50 * Main.ratio;
     public float score = 0;
     public float scoreBonusBySecond = 1;
-    public float scoreBonusByPrism = GameConfiguration.scoreBonusByPrism;
-    public float scoreBonusByObstacle = GameConfiguration.scoreBonusByObstacle;
+    public float scoreBonusByPrism = Game.gameConfiguration.scoreBonusByPrism;
+    public float scoreBonusByObstacle = Game.gameConfiguration.scoreBonusByObstacle;
     public float factor = 1;
     public boolean superBonus = false;
-    private float prismGravitationParameter = GameConfiguration.prismGravitationParameter;
-    private float obstacleGravitationParameter =  GameConfiguration.obstacleGravitationParameter;
+    private float prismGravitationParameter = Game.gameConfiguration.prismGravitationParameter;
+    private float obstacleGravitationParameter =  Game.gameConfiguration.obstacleGravitationParameter;
     public int prism = 0;
     public int obstacles = 0;
     public float score2 = 0;
@@ -98,7 +98,7 @@ public class GOPlayer extends Photon {
 
 
     public void update() {
-        Game.blackHole.gravitationParameter = GameConfiguration.gravitationParameter;
+        Game.blackHole.gravitationParameter = Game.gameConfiguration.gravitationParameter;
         if(immortalityDie > 0) {
             immortalityDie -= Main.delay;
         }
@@ -221,7 +221,7 @@ public class GOPlayer extends Photon {
         immortalityDie = timeToRecovery;
         die = true;
         color = 1;
-        GameConfiguration.gravitationParameter += obstacleGravitationParameter;
+        Game.gameConfiguration.gravitationParameter += obstacleGravitationParameter;
 //        hitPoints--;
         setScore(scoreBonusByObstacle);
 //        for(GOPlayer obPlayer : Game.players) {
@@ -241,7 +241,7 @@ public class GOPlayer extends Photon {
     public void collisionWithPrism() {
         prism++;
         setScore(scoreBonusByPrism);
-        GameConfiguration.gravitationParameter += prismGravitationParameter;
+        Game.gameConfiguration.gravitationParameter += prismGravitationParameter;
 //        immortalityDie = timeToRecovery;
 //        setScore(scoreBonusByPrism);
 //        shiftObAlongX += -penalty*2;
