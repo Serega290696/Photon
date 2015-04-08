@@ -15,7 +15,6 @@ public class GOPoint extends Photon {
     public Photon player;
     public float playerOldX;
 
-    public float shiftObAlongX = 0;
     private int curPointNumber;
 
     public GOPoint(float x, float y, float sx, float sy, GOPlayer curPlayer) {
@@ -47,19 +46,15 @@ public class GOPoint extends Photon {
 
     @Override
     public void move() {
-//        if(x <= Game.blackHole.sx) {
-//            amplitude *= 0.9f;
-//        }
         if(x > player.getX()) {
             y = player.myFunction(player.t + (x - player.x) / moveOnStep * player.freak);
-//            System.out.println(player.t + (x - player.x) / moveOnStep * player.freak);
         }
         else {
             float blSx = Game.blackHole.sx;
             y = player.path.get(curPointNumber + 1).y - playerYShift;
-            y *= 0.97;
+            if(x <= Main.game.blackHole.sx + 20)
+                y *= 0.97;
             y += playerYShift;
-//            y = player.path.get(curPointNumber + 1).y;
         }
         if(player.getClass().getSimpleName().equals("GOPhotonFon")) {
             x -= player.speed;
@@ -80,11 +75,8 @@ public class GOPoint extends Photon {
             opacity = sy / (player.lengthTrajectory*temp)/3;
             if(player.immortalityDie > 0) opacity *= 0.3;
 
-//            x = Game.player.x + moveOnStep / Game.player.freak;
-//            y = player.myFunction(player.t + (x - player.x)/moveOnStep*player.freak);
         }
         else {
-//            y = player.path.get(curPointNumber+1).y;
             sy = (x+1) / player.x * defaultSy;
             opacity = (x + 1) / player.x;
             if(player.immortalityDie > 0)

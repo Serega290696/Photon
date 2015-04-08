@@ -33,28 +33,30 @@ public class Main {
         public static final int dWidth = 1600;
         public static final int dHeight = (int) (dWidth * ratio);
         public static final int em = dWidth / 100;
+//    public static boolean restartGame = false;
 
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
             initDisplay();
             initGL();
             initDBWorker();
             Draw.init();
 
-            restartGame();
-
-        }
-
-
-    public static void restartGame() {
-            if(game != null)
-                game.clear();
+//            if(game != null)
+//                game.clear();
             initGame();
 
             gameLoop();
 
             cleanUp();
+//            restartGame();
+
         }
+
+
+    public static void restartGame() {
+        initGame();
+    }
 
         private static void initDisplay() {
 
@@ -117,7 +119,7 @@ public class Main {
                 if (Keyboard.isKeyDown(Keyboard.KEY_R))
                     restartGame();
             }
-            cleanUp();
+//            cleanUp();
         }
 
         private static void getInput() {

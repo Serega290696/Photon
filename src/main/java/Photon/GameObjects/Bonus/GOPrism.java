@@ -20,7 +20,7 @@ public class GOPrism extends GO {
         this.sy = sx;
         this.defaultSx = sx;
         this.y = (float) (Game.players.get(0).playerYShift + Game.players.get(0).defAmplitude * 2*(Math.random() - 0.5f));
-        this.x = 100;
+        this.x = 100 + Draw.xshift;
         this.rotate = (float)Math.random()*360;
     }
 

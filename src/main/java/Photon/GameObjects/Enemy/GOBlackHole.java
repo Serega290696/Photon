@@ -71,8 +71,6 @@ public class GOBlackHole extends GO {
 //            setGravitationPower(obPlayer);
             if(Physics.checkCollisions(this, obPlayer)) {
                 Game.gameOver(obPlayer);
-                if(Game.players.size() <= 1)
-                    Main.restartGame();
             }
         }
 //        sx = gravitationPower * 10;
@@ -84,14 +82,17 @@ public class GOBlackHole extends GO {
         float blackHoleSize = (this.x + this.sx/2);
         if( (curPlayer.x - blackHoleSize) / (100-blackHoleSize) > 0.45) {
             curPlayer.superBonus = true;
-            if( (curPlayer.x - blackHoleSize) / (100-blackHoleSize) > 0.5) {
+            if( (curPlayer.x - blackHoleSize) / (100-blackHoleSize) > 0.5 && defaultGravitationPower - gravitationParameter < 0) {
                 specialGravityParameter = gravitationPower;
                 gravitationPower = (float) ((Main.game.player.x - blackHoleSize) / (100 - blackHoleSize) - 0.4); // 0.1 ->0.3
                 gravitationPower *= 10; // 3 -> 12
 //                gravitationPower *= defaultGravitationPower;
-                gravitationPower = (float) Math.pow(gravitationPower, 4);
+                gravitationPower = (float) Math.pow(gravitationPower, 2.5f);
                 specialGravityParameter = specialGravityParameter / gravitationPower;
                 specialGravityParameter = 1 / specialGravityParameter;
+            }
+            else {
+                specialGravityParameter = 1;
             }
         }
         else {
@@ -105,7 +106,7 @@ public class GOBlackHole extends GO {
 
     @Override
     public void render() {
-        Draw.draw(figure, x, y, sx*1.1f, sy, rotate, color, 0.8f);
+        Draw.draw(figure, x, y, sx*1.1f, sy, rotate, color, 0.3f);
         Draw.draw(figure, x, y, sx, sy, rotate, color, 1);
     }
 

@@ -48,7 +48,10 @@ public class Draw {
         glDisable(GL_TEXTURE_2D);
 
 
-        x -= xshift;
+        if(!figure.name().equals("FON2"))
+            x -= xshift;
+        else
+            x -= xshift/3;
         y -= yshift;
         x *= Main.em;
         y *= Main.em;
@@ -63,9 +66,8 @@ public class Draw {
                 break;
             case CIRCLE: circle(x, y, sx, sy, color, opacity);
                 break;
-            case FON: fon2(x, y, sx, sy, rotate);
-                break;
-            case FON2: bigFon(x, y, sx, sy);
+            case FON2:
+                bigFon(x, y, sx, sy);
                 break;
             default:
                 break;
@@ -225,6 +227,7 @@ public class Draw {
                 "        Time: " + Game.integerTime +
                 "        Speed: " + (int)(Game.moveOnStep*100) +
                 "        Factor: " + (int)(Main.game.player.factor) +
+                "*" + (Main.game.player.comboBonus) +
                 "        Gravity: " + (Main.game.blackHole.gravitationPower/Game.blackHole.specialGravityParameter) +
                 " (" + Game.blackHole.specialGravityParameter + ")" +
                 "       " + (Main.game.player.prism) + " : " + (Main.game.player.obstacles)
@@ -235,14 +238,12 @@ public class Draw {
             font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 15*Main.em*Main.ratio, "Score: " + String.valueOf(Math.round(Game.players.get(i).score2)), org.newdawn.slick.Color.white);
             }
     }
-    public static void fon2(float x, float y, float sx, float sy, float rotate) {
+    /*public static void fon2(float x, float y, float sx, float sy, float rotate) {
         glPushMatrix();
         {
             glEnable(GL_TEXTURE_2D);
-//            glBindTexture(GL_TEXTURE_2D, 0);
             glColor3f(0.5f, 0.5f, 0.5f);
             glTranslatef(x, y, 0);
-//            sx*=0.9;
             glRotatef(-rotate, 0, 0, 1);
             fon1.bind();
             glBegin(GL_QUADS);
@@ -259,8 +260,7 @@ public class Draw {
             glEnd();
         }
         glPopMatrix();
-//        fon1.release();
-    }
+    }*/
     public static void bigFon(float x, float y, float sx, float sy) {
         glPushMatrix();
         {
@@ -376,8 +376,8 @@ public class Draw {
     }
     public static void init() {
         try {
-            fon1 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(TEXTURE_PATH + "fon/fon1.png"));
-            fon3 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(TEXTURE_PATH + "fon/fon4.png"));
+//            fon1 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(TEXTURE_PATH + "fon/fon1.png"));
+            fon3 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(TEXTURE_PATH + "fon/fon2.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

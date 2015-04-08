@@ -24,7 +24,6 @@ import java.util.Date;
 public class Game implements IGame{
 
     public static GameConfiguration gameConfiguration = new GameConfiguration();
-
     public static GOPlayer player;
     public static GOPlayer player2;
     public static GOBlackHole blackHole = new GOBlackHole();
@@ -101,14 +100,19 @@ public class Game implements IGame{
     }
 
     @Override
-    public void clear() {
+        public void clear() {
         players.clear();
         allObjects.clear();
         obstacles.clear();
         bonuses.clear();
         fon.clear();
-
+//        gameConfiguration.defaultGravitationPower = 0;
+        gameConfiguration.gravitationParameter = 5;
         level = 1;
+        time = 0;
+        integerTime = 0;
+        timeCfCreationObstacle = 0;
+        timeCfCreationBonus = 0;
         moveOnStep = defMoveOnStep;
 //        if(Draw.musicIsPlaying(Music.FON1))
 //            Draw.musicStop(Music.FON1);
@@ -315,6 +319,11 @@ public class Game implements IGame{
     @Override
     public void render() {
 //        distance += 0.2;
+        if(Main.game.player.x >= 65) {
+            Draw.xshift = (float) Math.pow(Main.game.player.x - 65, 1f);
+        }
+        else
+            Draw.xshift = 0;
         if(distance*moveOnStep >= 20) distance = 0;
 //        Draw.draw(DrawFigure.FON, 10 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
 //        Draw.draw(DrawFigure.FON, 30 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
@@ -322,7 +331,7 @@ public class Game implements IGame{
 //        Draw.draw(DrawFigure.FON, 70 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
 //        Draw.draw(DrawFigure.FON, 90 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
 //        Draw.draw(DrawFigure.FON, 110- distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-        Draw.draw(DrawFigure.FON2, 0, 0, 100, 100 * Main.ratio);
+        Draw.draw(DrawFigure.FON2, 0, 20 * Main.ratio, 125, 60 * Main.ratio);
 
         for(GO ob : allObjects) {
             ob.render();
@@ -366,10 +375,13 @@ public class Game implements IGame{
 //        player.setName(nameOfPlayer);
 
 //        DBWorker.getAll().toString();
-        User user = new User(player.name, (int)player.score, new Time((integerTime/3600), (integerTime/60)%60, integerTime%60), (new java.sql.Date( new Date().getTime() )));
+        User user = new User(player.name, (int)player.score, new Time((integerTime/3600), (integerTime/60)%60, integerTime%60), (new java.sql.Date( new Date().getTime())));
         DBWorker.insert(user);
         DBWorker.getAll().toString();
-        players.remove(player);
+        if(Game.players.size() <= 1)
+            Main.restartGame();// = true;
+        else
+            players.remove(player);
 //        DBWorker.insert(player.name, (int)player.score, 1000, new Time(integerTime), (new java.sql.Date( new Date().getTime() )), 0);
 
 //        DBWorker.update();

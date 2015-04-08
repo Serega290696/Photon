@@ -41,6 +41,7 @@ public class GOPlayer extends Photon {
     public boolean needToUpFreak = true;
     public int botLevel = 22;
     public int dodgedObstacle = 0;
+    public int comboBonus = 0;
 
 
 //    public static float minFreak = 0.15f;
@@ -66,7 +67,7 @@ public class GOPlayer extends Photon {
 
         float temp = lengthTrajectory / Game.moveOnStep -1;
         for(int i = 0; ; i++) {
-            path.add(new GOPoint(i * Game.moveOnStep*0.5f, defaultY, this));
+            path.add(new GOPoint(i * Game.moveOnStep*1.5f, defaultY, this));
 //            path.add(new GOPoint(i * 0.75f, defaultY, this));
             if(i * Game.moveOnStep > Main.dWidth)
                 break;
@@ -175,25 +176,24 @@ public class GOPlayer extends Photon {
             }
         }
         if(Game.players.size() <= 5) {
-//            x += penalty / (Main.fps * 8); // число - количество секуд за которые компенсирует пенальти
-//            setX(x - (100 - x) / (100-(Main.game.blackHole.sx-100)/2) * Main.game.blackHole.maxSpeedGravitation / Main.fps);
             setX(x - (Main.game.blackHole.gravitationPower) / Main.fps * (1 + 1/this.x));
         }
         t += freak;
         y = myFunction(t);
+//        if(x <= Main.game.blackHole.sx + 20) {
+//            y -= playerYShift;
+//            y *=  x / (Main.game.blackHole.sx + 20);
+//            y += playerYShift;
+//        }
         if (Math.abs(shiftObAlongX) > 0) {
             if (Math.abs(shiftObAlongX) < 0.5)
                 shiftObAlongX = 0;
-//                x -= 0.2 * Math.signum(shiftObAlongX);
             setX((float) (x - 0.2 * Math.signum(shiftObAlongX)));
             shiftObAlongX -= 0.2 * Math.signum(shiftObAlongX);
         }
 
     }
     public void setX(float newX) {
-//        for(GOPoint point : path) {
-//            point.x += newX - x;
-//        }
         x = newX;
 }
     public void checkCollisions() {
@@ -222,24 +222,12 @@ public class GOPlayer extends Photon {
         die = true;
         color = 1;
         Game.gameConfiguration.gravitationParameter += obstacleGravitationParameter;
-//        hitPoints--;
-        setScore(scoreBonusByObstacle);
-//        for(GOPlayer obPlayer : Game.players) {
-//            if(obPlayer == this) continue;
-//            obPlayer.shiftObAlongX -= penalty;
-//            for(GOPoint point : obPlayer.path) {
-//                point.shiftObAlongX -= penalty;
-//            }
-//        }
-//        shiftObAlongX += penalty;
-//        for(GOPoint point : this.path) {
-//            point.shiftObAlongX += penalty;
-//        }
-//        if(x <= 0)
-//            Main.restartGame();
+//        setScore(scoreBonusByObstacle);
+        comboBonus = 0;
     }
     public void collisionWithPrism() {
         prism++;
+        comboBonus++;
         setScore(scoreBonusByPrism);
         Game.gameConfiguration.gravitationParameter += prismGravitationParameter;
 //        immortalityDie = timeToRecovery;
@@ -276,12 +264,9 @@ public class GOPlayer extends Photon {
 
     public void setScore(float a) {
         float delta = Main.game.blackHole.x + Main.game.blackHole.sx/2;
-        factor = 1 + (x-delta) / (100-delta) * 2 * (superBonus?5:1) * (Game.level/3);
+        factor = (float) (1 + (x-delta) / (100-delta) * 2 * (superBonus?2:1) * (Math.pow(Game.level, 0.3f)/3)); //
         factor *= 0.1;
-//        a *= 1 + (x-delta) / (100-delta) * 2;
-//        if(superBonus)
-//            a *= 5;
-        score+=a*factor;
+        score+=a*factor*(comboBonus+1);
     }
     public void setDodgedObstacle() {
         if(immortalityDie <= 0) {
