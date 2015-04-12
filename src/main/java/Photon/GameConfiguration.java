@@ -61,10 +61,10 @@ public class GameConfiguration {
             obstSx = (float) (1 + 1*Math.random() + level * 0.1f);
             prismSx = (float) (2 + 1*Math.random() + level * 0.1f);
             freakChanger = (float) (Math.PI / Main.fps /6 * (0.8 + level*0.2));
-            timeToObst = 1.25f - level * 1.075f;
-            timeToObst = 0.05f;
-            timeToPrism = 6f - level * 0.05f;
-            timeToPrism = 0.05f;
+            timeToObst = 1.75f - level * 0.075f;
+//            timeToObst = 0.05f;
+            timeToPrism = 6f - level * 0.5f;
+//            timeToPrism = 0.05f;
             gravitationParameter -= (0.02f + level * 0.02f) / Main.fps;
         }
         else

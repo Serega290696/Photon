@@ -274,7 +274,7 @@ public class GOPlayer extends Photon {
         float delta = Main.game.blackHole.x + Main.game.blackHole.sx/2;
 //        factor = (float) (1 + (x-delta) / (100-delta) * 2 * (superBonus?2:1) * (Math.pow(Game.level, 0.3f)/3)); //
         factor = 0.1f;
-        score+=a*factor*(comboBonus+1)*(int)(0.7f+Main.game.level * 0.3f);
+        score+=a*factor*(comboBonus+1)*(int)(0.3f+Main.game.level * 0.7f);
     }
     public void setDodgedObstacle() {
         if(immortalityDie <= 0) {

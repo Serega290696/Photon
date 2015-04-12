@@ -57,6 +57,10 @@ public class Game implements IGame{
     private static float timeToPrism;
     private static float timeToObst;
 
+    private boolean isEnableCheats = false;
+    private int toEnableCheats[] = new int[]{5, 5, 6, 7, 2, 5};
+    private int toEnableCheatN = 0;
+
 
     public Game() {
         clear();
@@ -108,7 +112,7 @@ public class Game implements IGame{
         fon.clear();
 //        gameConfiguration.defaultGravitationPower = 0;
         gameConfiguration.gravitationParameter = gameConfiguration.defaultGravitationPower;
-        level = 10;
+        level = 1;
         time = 0;
         integerTime = 0;
         timeCfCreationObstacle = 0;
@@ -152,21 +156,54 @@ public class Game implements IGame{
                 }
                 break;
             case 2:
+                if(isEnableCheats)
+                    getInputCheats();
                 if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !player.isBot){
                     if(player.freak <= player.maxFreak)
                         player.freak += freakChanger;
                 }
-                if(Keyboard.isKeyDown(Keyboard.KEY_LEFT) && !player.isBot){
-                    player.x += -1;
+                if(Keyboard.isKeyDown(Keyboard.KEY_5))
+                {
+                    if(toEnableCheatN > toEnableCheats.length-1) {
+                        isEnableCheats = true;
+                        break;
+                    }
+                    if(toEnableCheats[toEnableCheatN] == 5) {
+                        toEnableCheatN++;
+                    }
+                    else if(toEnableCheats[toEnableCheatN-1] == 5){}
+                    else toEnableCheatN = 0;
+
                 }
-                if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT) && !player.isBot){
-                    player.x += 1;
+                if(Keyboard.isKeyDown(Keyboard.KEY_6))
+                {
+                    if(toEnableCheats[toEnableCheatN] == 6)
+                        toEnableCheatN++;
+                    else if(toEnableCheats[toEnableCheatN-1] == 6){}
+                    else toEnableCheatN = 0;
+                    if(toEnableCheatN > toEnableCheats.length-1) {
+                        isEnableCheats = true;
+                    }
                 }
-                if(Keyboard.isKeyDown(Keyboard.KEY_UP) && !player.isBot){
-                    player.collisionWithPrism();
+                if(Keyboard.isKeyDown(Keyboard.KEY_7))
+                {
+                    if(toEnableCheats[toEnableCheatN] == 7)
+                        toEnableCheatN++;
+                    else if(toEnableCheats[toEnableCheatN-1] == 7){}
+                    else toEnableCheatN = 0;
+                    if(toEnableCheatN > toEnableCheats.length-1) {
+                        isEnableCheats = true;
+                    }
                 }
-                if(Keyboard.isKeyDown(Keyboard.KEY_DOWN) && !player.isBot){
-                    player.collisionWithObstacle();
+                if(Keyboard.isKeyDown(Keyboard.KEY_2))
+                {
+                    if(toEnableCheatN > toEnableCheats.length-1) {
+                        isEnableCheats = true;
+                    }
+                    if(toEnableCheats[toEnableCheatN-1] == 2){break;}
+                    else if(toEnableCheats[toEnableCheatN] == 2)
+                        toEnableCheatN++;
+                    else toEnableCheatN = 0;
                 }
                 if(Keyboard.isKeyDown(Keyboard.KEY_1)){
                     ListWorker.getList();
@@ -187,23 +224,11 @@ public class Game implements IGame{
                 if(Keyboard.isKeyDown(Keyboard.KEY_9)){
                     mouseGrabbed = false;
                 }
-                if(Keyboard.isKeyDown(Keyboard.KEY_W)){
-                    level++;
-                }
-                if(Keyboard.isKeyDown(Keyboard.KEY_S)){
-                    level--;
-                }
                 if(Keyboard.isKeyDown(Keyboard.KEY_P)){
                     pause = true;
                 }
                 if(Keyboard.isKeyDown(Keyboard.KEY_O)){
                     pause = false;
-                }
-                if(Keyboard.isKeyDown(Keyboard.KEY_I)){
-                    player.immortal = true;
-                }
-                if(Keyboard.isKeyDown(Keyboard.KEY_U)){
-                    player.immortal = false;
                 }
                 if (player2 != null) {
                     if(Keyboard.isKeyDown(Keyboard.KEY_Q) && !player2.isBot){
@@ -222,6 +247,32 @@ public class Game implements IGame{
             player.die = false;
         }
     }
+    public void getInputCheats() {
+        if(Keyboard.isKeyDown(Keyboard.KEY_LEFT) && !player.isBot){
+            player.x += -1;
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT) && !player.isBot){
+            player.x += 1;
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_UP) && !player.isBot){
+            player.collisionWithPrism();
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_DOWN) && !player.isBot){
+            player.collisionWithObstacle();
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_W)){
+            level++;
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_S)){
+            level--;
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_I)){
+            player.immortal = true;
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_U)){
+            player.immortal = false;
+        }
+    }
     public void update() {
         Main.mouseGrabbed(mouseGrabbed);
         if(pause) {
@@ -232,8 +283,8 @@ public class Game implements IGame{
             mouseGrabbed = true;
         }
         Main.mouseGrabbed(mouseGrabbed);
-        script();
         gameConfiguration.update();
+        script();
 //        prism.update();
         if(blackHole != null)
             blackHole.update();
@@ -271,7 +322,7 @@ public class Game implements IGame{
         integerTime = (int)time;
         if(oldTime == integerTime) {
             nowNewSecond = false;
-            return;
+//            return;
         }
         else {
             nowNewSecond = true;
@@ -283,14 +334,14 @@ public class Game implements IGame{
 //            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
 //            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
         }
-        if(integerTime%10 == 0) {
+        if(integerTime%10 == 0 && nowNewSecond) {
             level++;
         }
         moveOnStep = gameConfiguration.moveOnStep;
         freakChanger = gameConfiguration.freakChanger;
         timeToPrism = gameConfiguration.timeToPrism;
         timeToObst = gameConfiguration.timeToObst;
-
+//        System.out.println(timeToObst + "~" + gameConfiguration.timeToObst);
 //        if(time - timeCfCreationBonus >= 1.0 + (5.0f / Math.pow(level, 0.5f))) {
         if(time - timeCfCreationBonus >= timeToPrism) {
             if(!obstacles.isEmpty()) {
@@ -304,18 +355,19 @@ public class Game implements IGame{
                 bonuses.add(new GOPrism());
             timeCfCreationBonus = time;
         }
-        else {
-            if(time - timeCfCreationObstacle >= timeToObst) {
+
+        if(level > 7) {
+            if (time - timeCfCreationObstacle >= timeToObst) {
                 obstacles.add(new GOObstacle());
                 timeCfCreationObstacle = time;
             }
         }
-        if(level > 7)
-            if(time - timeCfCreationObstacle >= timeToObst) {
-                System.out.println(time - timeCfCreationObstacle);
+        else {
+            if(time - timeCfCreationObstacle >= timeToObst && time - timeCfCreationBonus > 0.2f) {
                 obstacles.add(new GOObstacle());
                 timeCfCreationObstacle = time;
             }
+        }
 //        if(integerTime % 2 == 0) {
 //            obstacles.add(new GOObstacle());
 //        }

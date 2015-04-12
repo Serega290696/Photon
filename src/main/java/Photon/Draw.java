@@ -242,7 +242,7 @@ public class Draw {
                             + "  ("
                             + (Main.game.player.comboBonus+1)
                             + " x "
-                            + (int)(0.7f+Main.game.level * 0.3f)
+                            + (int)(0.3f+Main.game.level * 0.7f)
                             + ")"
                     ,
                     org.newdawn.slick.Color.white);
