@@ -234,8 +234,18 @@ public class Draw {
                 , org.newdawn.slick.Color.white);
         for(int i = 0; i < Game.players.size(); i++) {
             font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 5*Main.em*Main.ratio, Game.players.get(i).name, org.newdawn.slick.Color.white);
-            font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 10*Main.em*Main.ratio, "Score: " + String.valueOf(Math.round(Game.players.get(i).score)), org.newdawn.slick.Color.white);
-            font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 15*Main.em*Main.ratio, "Score: " + String.valueOf(Math.round(Game.players.get(i).score2)), org.newdawn.slick.Color.white);
+            font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 10*Main.em*Main.ratio,
+                    "Score: "
+                            + String.valueOf(Math.round(Game.players.get(i).score))
+                            + "  x "
+                            + (0.7f+Main.game.level * 0.3f)*(Main.game.player.comboBonus+1)
+                            + "  ("
+                            + (Main.game.player.comboBonus+1)
+                            + " x "
+                            + (int)(0.7f+Main.game.level * 0.3f)
+                            + ")"
+                    ,
+                    org.newdawn.slick.Color.white);
             }
     }
     /*public static void fon2(float x, float y, float sx, float sy, float rotate) {
@@ -272,6 +282,7 @@ public class Draw {
 //            sx*=0.9;
             glRotatef(-0, 0, 0, 1);
             fon3.bind();
+            glDisable(GL_POLYGON_SMOOTH);
             glBegin(GL_QUADS);
             {
                 glTexCoord2f(0, 0);

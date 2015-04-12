@@ -99,7 +99,8 @@ public class GOPlayer extends Photon {
 
 
     public void update() {
-        Game.blackHole.gravitationParameter = Game.gameConfiguration.gravitationParameter;
+        updateLvlConfiguration();
+
         if(immortalityDie > 0) {
             immortalityDie -= Main.delay;
         }
@@ -143,6 +144,13 @@ public class GOPlayer extends Photon {
         for (GOPoint p : path) {
             p.move();
         }
+    }
+    public void updateLvlConfiguration() {
+        minFreak = Main.game.gameConfiguration.minFreak;
+        maxFreak = Main.game.gameConfiguration.maxFreak;
+        prismGravitationParameter = Game.gameConfiguration.prismGravitationParameter;
+        obstacleGravitationParameter =  Game.gameConfiguration.obstacleGravitationParameter;
+        Game.blackHole.gravitationParameter = Game.gameConfiguration.gravitationParameter;
     }
 
     @Override
@@ -264,9 +272,9 @@ public class GOPlayer extends Photon {
 
     public void setScore(float a) {
         float delta = Main.game.blackHole.x + Main.game.blackHole.sx/2;
-        factor = (float) (1 + (x-delta) / (100-delta) * 2 * (superBonus?2:1) * (Math.pow(Game.level, 0.3f)/3)); //
-        factor *= 0.1;
-        score+=a*factor*(comboBonus+1);
+//        factor = (float) (1 + (x-delta) / (100-delta) * 2 * (superBonus?2:1) * (Math.pow(Game.level, 0.3f)/3)); //
+        factor = 0.1f;
+        score+=a*factor*(comboBonus+1)*(int)(0.7f+Main.game.level * 0.3f);
     }
     public void setDodgedObstacle() {
         if(immortalityDie <= 0) {

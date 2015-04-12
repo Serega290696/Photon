@@ -14,9 +14,10 @@ public class GOPrism extends GO {
 
     public GOPrism() {
         this.figure = DrawFigure.TRIANGLE;
-        this.sx = (float) (Math.pow(Game.level, 0.5f) + Math.random() * (2+Math.pow(Game.level, 0.5f)));
-        if(this.sx >= maxSize) this.sx = maxSize;
-        this.sx *= 0.6;
+//        this.sx = (float) (Math.pow(Game.level, 0.5f) + Math.random() * (2+Math.pow(Game.level, 0.5f)));
+        this.sx = Main.game.gameConfiguration.prismSx;
+//        if(this.sx >= maxSize) this.sx = maxSize;
+//        this.sx *= 0.6;
         this.sy = sx;
         this.defaultSx = sx;
         this.y = (float) (Game.players.get(0).playerYShift + Game.players.get(0).defAmplitude * 2*(Math.random() - 0.5f));

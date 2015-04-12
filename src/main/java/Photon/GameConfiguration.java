@@ -10,40 +10,67 @@ public class GameConfiguration {
     public float scoreBonusByPrism = 100;
     public float scoreBonusByObstacle = -50;
     public float defaultGravitationPower = 5;
-    public float gravitationParameter = 5;
-    public float defPrismGravitationParameter = defaultGravitationPower * 0.25f;
-    public float defObstacleGravitationParameter =  - defaultGravitationPower * 0.1f;
+    public float gravitationParameter = defaultGravitationPower;
+    public float defPrismGravitationParameter ;
+    public float defObstacleGravitationParameter ;
     public float prismGravitationParameter = defPrismGravitationParameter;
     public float obstacleGravitationParameter =  defObstacleGravitationParameter;
     public float amplitude = 40 * Main.ratio / 2;
 
-
+    public static float minFreak = 0.12f;
+    public static float maxFreak = 0.5f;
+    public float freakChanger = (float) (Math.PI / Main.fps /6);
 
     public float defMoveOnStep = 20f/ Main.em;
     public float moveOnStep = defMoveOnStep;
+    public float obstSx = 1;
+    public float prismSx = 1;
+    public float timeToObst;
+    public float timeToPrism;
 
     public GameConfiguration() {
         scoreBonusByPrism = 100;
         scoreBonusByObstacle = -50;
         defaultGravitationPower = 5;
-        gravitationParameter = 5;
-        defPrismGravitationParameter = defaultGravitationPower * 1.0f;
+        gravitationParameter = defaultGravitationPower;
+        defPrismGravitationParameter = defaultGravitationPower * 1.5f;
         defObstacleGravitationParameter =  - defaultGravitationPower * 0.5f;
         prismGravitationParameter = defPrismGravitationParameter;
         obstacleGravitationParameter =  defObstacleGravitationParameter;
 
         defMoveOnStep = 10f/ Main.em;
-        moveOnStep = 13f/ Main.em;
+        moveOnStep = 10f/ Main.em;
+        obstSx = 1;
+        prismSx = 1;
+        timeToObst = 1.25f;
+        timeToPrism = 6f;
+//        moveOnStep = 3;
     }
 
     public void update() {
+        int level = Game.level;
+        if(moveOnStep <= 2.8f)
+            moveOnStep = defMoveOnStep + 0.20f * level; // 0.15 -> 2.8
+        if(minFreak < 0.16f)
+            minFreak = 0.12f + 0.004f * level; // 0.12 -> 0.3
+        if(minFreak < 0.7f)
+            maxFreak = 0.4f + 0.03f * level; // 0.4 -> 0.7
+//        prismGravitationParameter = (float) (defPrismGravitationParameter * (1 + 0.2 * level));
+        if(level <= 10) {
+            obstacleGravitationParameter = (float) -(prismGravitationParameter * (0.3f + 0.07f * level));
+            obstSx = (float) (1 + 1*Math.random() + level * 0.1f);
+            prismSx = (float) (2 + 1*Math.random() + level * 0.1f);
+            freakChanger = (float) (Math.PI / Main.fps /6 * (0.8 + level*0.2));
+            timeToObst = 1.25f - level * 1.075f;
+            timeToObst = 0.05f;
+            timeToPrism = 6f - level * 0.05f;
+            timeToPrism = 0.05f;
+            gravitationParameter -= (0.02f + level * 0.02f) / Main.fps;
+        }
+        else
+            gravitationParameter -= (0.22f + level * 0.01f) / Main.fps;
+//        obstacleGravitationParameter = (float) (defObstacleGravitationParameter * (1 + 0.25 * level));
 
-        if(moveOnStep <= 8)
-            moveOnStep = defMoveOnStep + 0.05f * Game.level;
-        prismGravitationParameter = (float) (defPrismGravitationParameter * (1 + 0.2 * Game.level));
-        obstacleGravitationParameter = (float) (defObstacleGravitationParameter * (1 + 0.25 * Game.level));
-
-        gravitationParameter -= (Game.level * 0.02f) / Main.fps;
     }
 
 

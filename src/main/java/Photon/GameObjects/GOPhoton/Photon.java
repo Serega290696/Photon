@@ -2,11 +2,9 @@ package Photon.GameObjects.GOPhoton;
 
 import Photon.GO;
 import Photon.Game;
-import Photon.GameConfiguration;
-import Photon.GameObjects.Enemy.GOObstacle;
+import Photon.Main;
 
 import java.util.ArrayList;
-import Photon.Main;
 
 /**
  * Created by Serega on 01.04.2015.
@@ -29,8 +27,8 @@ public abstract class Photon extends GO {
     public float lengthTrajectory = 30;
 
     public boolean die = false;
-    public static float minFreak = 0.12f;
-    public static final float maxFreak = 0.5f;
+    public static float minFreak = Main.game.gameConfiguration.minFreak;
+    public static float maxFreak = Main.game.gameConfiguration.maxFreak;
     public float speed = 0; // 0
 
     @Override

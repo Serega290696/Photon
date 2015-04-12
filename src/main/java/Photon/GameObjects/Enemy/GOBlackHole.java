@@ -80,14 +80,14 @@ public class GOBlackHole extends GO {
         gravitationParameter = Game.gameConfiguration.gravitationParameter;
         gravitationPower = defaultGravitationPower;
         float blackHoleSize = (this.x + this.sx/2);
-        if( (curPlayer.x - blackHoleSize) / (100-blackHoleSize) > 0.45) {
-            curPlayer.superBonus = true;
-            if( (curPlayer.x - blackHoleSize) / (100-blackHoleSize) > 0.5 && defaultGravitationPower - gravitationParameter < 0) {
+        if( (curPlayer.x) / (100) > 0.45) {
+//            curPlayer.superBonus = true;
+            if( (curPlayer.x) / (100) > 0.5 && defaultGravitationPower - gravitationParameter < 0) {
                 specialGravityParameter = gravitationPower;
-                gravitationPower = (float) ((Main.game.player.x - blackHoleSize) / (100 - blackHoleSize) - 0.4); // 0.1 ->0.3
-                gravitationPower *= 10; // 3 -> 12
+                gravitationPower = (float) ((Main.game.player.x ) / (100) - 0.4); // 0.1 ->0.6
+                gravitationPower *= 10; // 10 -> 60
 //                gravitationPower *= defaultGravitationPower;
-                gravitationPower = (float) Math.pow(gravitationPower, 2.5f);
+                gravitationPower = (float) Math.pow(gravitationPower, 5.0f);
                 specialGravityParameter = specialGravityParameter / gravitationPower;
                 specialGravityParameter = 1 / specialGravityParameter;
             }
@@ -97,11 +97,10 @@ public class GOBlackHole extends GO {
         }
         else {
             specialGravityParameter = 1;
-            Main.game.player.superBonus = false;
+//            Main.game.player.superBonus = false;
             gravitationPower = defaultGravitationPower;
         }
         gravitationPower -= gravitationParameter;
-//        gravitationParameter *=
     }
 
     @Override

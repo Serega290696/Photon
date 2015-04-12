@@ -26,5 +26,8 @@
         <module name="PhotonSql" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PhotonSql" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

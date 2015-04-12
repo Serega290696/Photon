@@ -34,7 +34,7 @@ public class Game implements IGame{
     public static ArrayList<GOPrism> bonuses = new ArrayList<GOPrism>();
 //    public static GOPrism prism;
     public static int controlMode = 1;
-    public static float freakChanger = (float) (Math.PI / Main.fps /6);
+    public static float freakChanger = Main.game.gameConfiguration.freakChanger;
 
     public static float distance = 0;
 
@@ -49,11 +49,13 @@ public class Game implements IGame{
     public static float defMoveOnStep = gameConfiguration.defMoveOnStep;
     public static float moveOnStep;
     public static boolean somethingWasChanged = false;
-    public static int level = 1;
+    public static int level;
     public static boolean nowNewSecond = false;
     public static boolean mute = true;
     public static boolean mouseGrabbed = true;
     public static boolean pause = false;
+    private static float timeToPrism;
+    private static float timeToObst;
 
 
     public Game() {
@@ -67,7 +69,7 @@ public class Game implements IGame{
 //            }
             if(gameConfiguration.playersAmount >= 1) {
                 massOfPlayers[0] =
-                        (player = new GOPlayer(55, 50 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false));
+                        (player = new GOPlayer(45, 50 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false));
 
             }
             if(gameConfiguration.playersAmount >= 2) {
@@ -94,12 +96,10 @@ public class Game implements IGame{
 //        prism = new GOPrism();
     }
 
-    @Override
     public void restartGame() {
 
     }
 
-    @Override
         public void clear() {
         players.clear();
         allObjects.clear();
@@ -107,8 +107,8 @@ public class Game implements IGame{
         bonuses.clear();
         fon.clear();
 //        gameConfiguration.defaultGravitationPower = 0;
-        gameConfiguration.gravitationParameter = 5;
-        level = 1;
+        gameConfiguration.gravitationParameter = gameConfiguration.defaultGravitationPower;
+        level = 10;
         time = 0;
         integerTime = 0;
         timeCfCreationObstacle = 0;
@@ -119,7 +119,6 @@ public class Game implements IGame{
 
     }
 
-    @Override
     public void getInput() {
         float b = (float) (15f / Main.fps);
         switch(controlMode) {
@@ -223,7 +222,6 @@ public class Game implements IGame{
             player.die = false;
         }
     }
-    @Override
     public void update() {
         Main.mouseGrabbed(mouseGrabbed);
         if(pause) {
@@ -268,7 +266,6 @@ public class Game implements IGame{
 
     }
 
-    @Override
     public void script() {
         time+=Main.delay/1000f;
         integerTime = (int)time;
@@ -286,17 +283,16 @@ public class Game implements IGame{
 //            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
 //            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
         }
-        if(integerTime%5 == 0) {
+        if(integerTime%10 == 0) {
             level++;
         }
         moveOnStep = gameConfiguration.moveOnStep;
+        freakChanger = gameConfiguration.freakChanger;
+        timeToPrism = gameConfiguration.timeToPrism;
+        timeToObst = gameConfiguration.timeToObst;
 
-        if(time - timeCfCreationObstacle >= 0.5 + (0.75f / Math.pow(level, 0.5f))) {
-            obstacles.add(new GOObstacle());
-            timeCfCreationObstacle = time;
-        }
 //        if(time - timeCfCreationBonus >= 1.0 + (5.0f / Math.pow(level, 0.5f))) {
-        if(time - timeCfCreationBonus >= 1.0 + (5.0f / Math.pow(level, 0.5f))) {
+        if(time - timeCfCreationBonus >= timeToPrism) {
             if(!obstacles.isEmpty()) {
                 bonuses.add(new GOPrism());
                 while(Physics.checkCollisions(obstacles.get(obstacles.size() - 1), bonuses.get(bonuses.size() - 1))) {
@@ -308,6 +304,18 @@ public class Game implements IGame{
                 bonuses.add(new GOPrism());
             timeCfCreationBonus = time;
         }
+        else {
+            if(time - timeCfCreationObstacle >= timeToObst) {
+                obstacles.add(new GOObstacle());
+                timeCfCreationObstacle = time;
+            }
+        }
+        if(level > 7)
+            if(time - timeCfCreationObstacle >= timeToObst) {
+                System.out.println(time - timeCfCreationObstacle);
+                obstacles.add(new GOObstacle());
+                timeCfCreationObstacle = time;
+            }
 //        if(integerTime % 2 == 0) {
 //            obstacles.add(new GOObstacle());
 //        }
@@ -316,11 +324,10 @@ public class Game implements IGame{
 //        }
     }
 
-    @Override
     public void render() {
 //        distance += 0.2;
-        if(Main.game.player.x >= 65) {
-            Draw.xshift = (float) Math.pow(Main.game.player.x - 65, 1f);
+        if(Main.game.player.x >= 50) {
+            Draw.xshift = (float) Math.pow(Main.game.player.x - 47, 1f);
         }
         else
             Draw.xshift = 0;
@@ -354,7 +361,6 @@ public class Game implements IGame{
         Draw.gameInterface();
 //        prism.render();
     }
-    @Override
     public void delObj(GO removeOb) {
 //        allObjects.remove(removeOb);
         obstacles.remove(removeOb);
