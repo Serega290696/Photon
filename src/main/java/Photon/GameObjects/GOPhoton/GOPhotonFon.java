@@ -1,15 +1,10 @@
 package Photon.GameObjects.GOPhoton;
 
-import Photon.Enums.DrawFigure;
-import Photon.Game;
-import Photon.Main;
-import Photon.Draw;
-
 /**
  * Created by Serega on 01.04.2015.
  */
-public class GOPhotonFon extends Photon{
-
+public class GOPhotonFon/* extends Photon*/{
+/*
 //    public float defAmplitude = 20 * Main.ratio / 2;
 //    public float amplitude = 20 * Main.ratio / 2;
 //    public float freak = 0.12f;
@@ -135,5 +130,5 @@ public class GOPhotonFon extends Photon{
 //        defaultColor = 1;
 //        color = defaultColor;
         die = true;
-    }
+    }*/
 }

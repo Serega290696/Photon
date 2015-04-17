@@ -24,7 +24,7 @@ import java.util.Date;
 public class Game implements IGame{
 
     public static GameConfiguration gameConfiguration = new GameConfiguration();
-    public static GOPlayer player;
+    public GOPlayer player;
     public static GOPlayer player2;
     public static GOBlackHole blackHole = new GOBlackHole();
     public static ArrayList<GOPlayer> players = new ArrayList<GOPlayer>();
@@ -56,8 +56,9 @@ public class Game implements IGame{
     public static boolean pause = false;
     private static float timeToPrism;
     private static float timeToObst;
+    private static boolean restartGame = false;
 
-    private boolean isEnableCheats = false;
+    private boolean isEnableCheats = true;
     private int toEnableCheats[] = new int[]{5, 5, 6, 7, 2, 5};
     private int toEnableCheatN = 0;
 
@@ -71,14 +72,15 @@ public class Game implements IGame{
 //            for(int i = 0; i < GameConfiguration.playersAmount; i++) {
 //                massOfPlayers[i] = player = new GOPlayer(50 + 10*i, 50*Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2 + i, false);
 //            }
-            if(gameConfiguration.playersAmount >= 1) {
+            if(gameConfiguration.playersAmount == 1) {
                 massOfPlayers[0] =
-                        (player = new GOPlayer(45, 50 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false));
-
+                        (player = new GOPlayer(GOPlayer.beginX, 50 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false));
             }
-            if(gameConfiguration.playersAmount >= 2) {
+            if(gameConfiguration.playersAmount > 1) {
+                massOfPlayers[0] =
+                        (player = new GOPlayer(45, 40 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false));
                 massOfPlayers[1] =
-                        (player2 = new GOPlayer(45, 50 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName + "_2", 5, false));
+                        (player2 = new GOPlayer(45, 60 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName + "_2", 5, false));
             }
 //            massOfPlayers[] = {
 //                    player = new GOPlayer(60, 50*Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false),
@@ -111,13 +113,17 @@ public class Game implements IGame{
         bonuses.clear();
         fon.clear();
 //        gameConfiguration.defaultGravitationPower = 0;
-        gameConfiguration.gravitationParameter = gameConfiguration.defaultGravitationPower;
+//        gameConfiguration.gravitationParameter = gameConfiguration.defaultGravitationPower;
+            for(int i = 0; i < gameConfiguration.playersAmount; i++) {
+                gameConfiguration.gravitationParameter[i] = gameConfiguration.defaultGravitationPower;
+            }
         level = 1;
         time = 0;
         integerTime = 0;
         timeCfCreationObstacle = 0;
         timeCfCreationBonus = 0;
         moveOnStep = defMoveOnStep;
+        restartGame = false;
 //        if(Draw.musicIsPlaying(Music.FON1))
 //            Draw.musicStop(Music.FON1);
 
@@ -292,16 +298,20 @@ public class Game implements IGame{
         for(GO ob : allObjects) {
             ob.update();
         }
-        for(GO ob : fon) {
-            ob.update();
-        }
         for(GOPlayer obPlayer : players) {
             blackHole.setGravitationPower(obPlayer);
             obPlayer.update();
-            for(GOPoint point : obPlayer.path) {
-                point.update();
-            }
-            obPlayer.danger = false;
+            if(restartGame)
+                break;
+            else
+                for(GOPoint point : obPlayer.path) {
+                    point.update();
+                }
+//            obPlayer.danger = false;
+        }
+        if(restartGame) {
+            Main.restartGame();
+            return;
         }
         do {
             somethingWasChanged = false;
@@ -334,7 +344,7 @@ public class Game implements IGame{
 //            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
 //            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
         }
-        if(integerTime%10 == 0 && nowNewSecond) {
+        if(integerTime%6 == 0 && nowNewSecond) {
             level++;
         }
         moveOnStep = gameConfiguration.moveOnStep;
@@ -368,6 +378,11 @@ public class Game implements IGame{
                 timeCfCreationObstacle = time;
             }
         }
+//        if(time - timeCfCreationObstacle >= timeToObst) {
+//            if(time)
+//            obstacles.add(new GOObstacle());
+//            timeCfCreationObstacle = time;
+//        }
 //        if(integerTime % 2 == 0) {
 //            obstacles.add(new GOObstacle());
 //        }
@@ -378,8 +393,8 @@ public class Game implements IGame{
 
     public void render() {
 //        distance += 0.2;
-        if(Main.game.player.x >= 50) {
-            Draw.xshift = (float) Math.pow(Main.game.player.x - 47, 1f);
+        if(Main.game.player.funX >= GOPlayer.beginX && gameConfiguration.playersAmount < 2) {
+            Draw.xshift = (float) Math.pow(Main.game.player.funX - GOPlayer.beginX, 1f);
         }
         else
             Draw.xshift = 0;
@@ -390,12 +405,9 @@ public class Game implements IGame{
 //        Draw.draw(DrawFigure.FON, 70 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
 //        Draw.draw(DrawFigure.FON, 90 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
 //        Draw.draw(DrawFigure.FON, 110- distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-        Draw.draw(DrawFigure.FON2, 0, 20 * Main.ratio, 125, 60 * Main.ratio);
+        Draw.draw(DrawFigure.FON2, 0, 20 * Main.ratio, 150, 60 * Main.ratio);
 
         for(GO ob : allObjects) {
-            ob.render();
-        }
-        for(GO ob : fon) {
             ob.render();
         }
         for(GOPlayer obPlayer : players) {
@@ -428,18 +440,22 @@ public class Game implements IGame{
     }
 
 
-    public static void gameOver(GOPlayer player) {
+    public static void gameOver() {
 //        String nameOfPlayer = "Pashok";
 //        player.setName(nameOfPlayer);
 
 //        DBWorker.getAll().toString();
-        User user = new User(player.name, (int)player.score, new Time((integerTime/3600), (integerTime/60)%60, integerTime%60), (new java.sql.Date( new Date().getTime())));
-        DBWorker.insert(user);
+        for(GOPlayer player : players) {
+            User user = new User(player.name, (int)player.score, new Time((integerTime/3600), (integerTime/60)%60, integerTime%60), (new java.sql.Date( new Date().getTime())));
+            DBWorker.insert(user);
+        }
+        System.out.println("\n********************");
         DBWorker.getAll().toString();
-        if(Game.players.size() <= 1)
-            Main.restartGame();// = true;
-        else
-            players.remove(player);
+        System.out.println("********************\n");
+//        if(Game.players.size() <= 1)
+        restartGame = true;
+//        else
+//            players.remove(player);
 //        DBWorker.insert(player.name, (int)player.score, 1000, new Time(integerTime), (new java.sql.Date( new Date().getTime() )), 0);
 
 //        DBWorker.update();

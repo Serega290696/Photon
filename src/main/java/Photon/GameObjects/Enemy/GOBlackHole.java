@@ -26,7 +26,9 @@ public class GOBlackHole extends GO {
         color = 7;
         opacity = 1.0f;
         defaultGravitationPower = Game.gameConfiguration.defaultGravitationPower;
-        gravitationParameter = defaultGravitationPower;
+//        for(int i = 0; i < Game.gameConfiguration.playersAmount; i++) {
+            gravitationParameter = defaultGravitationPower;
+//        }
 //        x = -100/2;
 //        y = 100/2*Main.ratio;
 //        sx = 100*1.2f;
@@ -43,7 +45,7 @@ public class GOBlackHole extends GO {
 
     @Override
     public void update() {
-        gravitationParameter = Game.gameConfiguration.gravitationParameter;
+        gravitationParameter = Game.gameConfiguration.gravitationParameter[0];
 //        float growth = 0.1f;
 //        if(gravitationPower < maxSpeedGravitation)
 //            gravitationPower += growth / Main.fps;
@@ -61,44 +63,23 @@ public class GOBlackHole extends GO {
 //                break;
             }
         }
-        for(GO photonFon : Game.fon) {
-            if(Physics.checkCollisions(this, photonFon)) {
-                photonFon.collision();
-//                break;
-            }
-        }
         for(GOPlayer obPlayer : Game.players) {
 //            setGravitationPower(obPlayer);
-            if(Physics.checkCollisions(this, obPlayer)) {
-                Game.gameOver(obPlayer);
-            }
+//            if(Physics.checkCollisions(this, obPlayer)) {
+//                Game.gameOver(obPlayer);
+//            }
         }
 //        sx = gravitationPower * 10;
     }
 
     public void setGravitationPower(GOPlayer curPlayer) {
-        gravitationParameter = Game.gameConfiguration.gravitationParameter;
+        gravitationParameter = Game.gameConfiguration.gravitationParameter[Main.game.players.indexOf(curPlayer)];
         gravitationPower = defaultGravitationPower;
-        float blackHoleSize = (this.x + this.sx/2);
-        if( (curPlayer.x) / (100) > 0.45) {
-//            curPlayer.superBonus = true;
-            if( (curPlayer.x) / (100) > 0.5 && defaultGravitationPower - gravitationParameter < 0) {
-                specialGravityParameter = gravitationPower;
-                gravitationPower = (float) ((Main.game.player.x ) / (100) - 0.4); // 0.1 ->0.6
-                gravitationPower *= 10; // 10 -> 60
-//                gravitationPower *= defaultGravitationPower;
-                gravitationPower = (float) Math.pow(gravitationPower, 5.0f);
-                specialGravityParameter = specialGravityParameter / gravitationPower;
-                specialGravityParameter = 1 / specialGravityParameter;
-            }
-            else {
-                specialGravityParameter = 1;
-            }
-        }
-        else {
             specialGravityParameter = 1;
-//            Main.game.player.superBonus = false;
             gravitationPower = defaultGravitationPower;
+        if(defaultGravitationPower-gravitationParameter < 0) {
+                gravitationParameter -= gravitationParameter*0.1f/Main.fps;
+            Game.gameConfiguration.gravitationParameter[Main.game.players.indexOf(curPlayer)] = gravitationParameter;
         }
         gravitationPower -= gravitationParameter;
     }

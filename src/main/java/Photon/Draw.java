@@ -46,19 +46,22 @@ public class Draw {
     public static void draw(DrawFigure figure, float x, float y, float sx, float sy, float rotate, int color, float opacity) {
 
         glDisable(GL_TEXTURE_2D);
-
-
-        if(!figure.name().equals("FON2"))
+        if(!figure.name().equals("FON2") && !figure.name().equals("CIRCLE"))
             x -= xshift;
-        else
-            x -= xshift/3;
+        else {
+            if(!figure.name().equals("CIRCLE")) {
+                if (x - xshift / 3 > -50) {
+                    x -= xshift / 3;
+                } else
+                    x = -50;
+            }
+        }
         y -= yshift;
         x *= Main.em;
         y *= Main.em;
 
         sx *= Main.em;
         sy *= Main.em;
-
         switch(figure) {
             case RECT: rect(x, y, sx, sy, rotate, color, opacity);
                 break;

@@ -46,14 +46,14 @@ public class GOPoint extends Photon {
 
     @Override
     public void move() {
-        if(x > player.getX()) {
+        if(x > player.getXForPoint()) {
             y = player.myFunction(player.t + (x - player.x) / moveOnStep * player.freak);
         }
         else {
             float blSx = Game.blackHole.sx;
             y = player.path.get(curPointNumber + 1).y - playerYShift;
-            if(x <= Main.game.blackHole.sx + 20)
-                y *= 0.97;
+            if(x <= Main.game.blackHole.sx + 20 - Draw.xshift)
+                y *= 0.93;
             y += playerYShift;
         }
         if(player.getClass().getSimpleName().equals("GOPhotonFon")) {
@@ -67,7 +67,7 @@ public class GOPoint extends Photon {
         moveOnStep = Game.moveOnStep;
         float temp;//a
         temp = 1 / player.lengthTrajectory;
-        if(x > player.getX()) {
+        if(x > player.getXForPoint()) {
             sy = player.lengthTrajectory - (this.x - player.x);
             if(sy <= 0)
                 sy = 0;

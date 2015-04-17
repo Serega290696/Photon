@@ -56,4 +56,7 @@ public abstract class Photon extends GO {
     public void setX(float newX) {
         x = newX;
     }
+    public float getXForPoint() {
+        return x;
+    }
 }

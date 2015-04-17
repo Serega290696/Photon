@@ -42,6 +42,8 @@ public class GOPlayer extends Photon {
     public int botLevel = 22;
     public int dodgedObstacle = 0;
     public int comboBonus = 0;
+    public float funX = 0;
+    public static float beginX = 50;
 
 
 //    public static float minFreak = 0.15f;
@@ -50,8 +52,10 @@ public class GOPlayer extends Photon {
 
     public GOPlayer(float x, float y, float sx, DrawFigure figure, String name, int color, boolean isBot) {
         this.x = x;
+        this.funX = x;
         this.y = y;
         this.defaultY = y;
+        this.playerYShift = y;
         this.sx = sx;
         this.sy = sx;
         defaultSx = sx;
@@ -75,7 +79,7 @@ public class GOPlayer extends Photon {
     }
 
     private void gameOver() {
-        Game.gameOver(this);
+        Game.gameOver();
     }
 
     public GOPlayer() {
@@ -86,7 +90,7 @@ public class GOPlayer extends Photon {
         defaultSx = sx;
         name = "Player " + Game.players.size() + "";
 //        x -= 10 * hitPoints;
-        setX(x - 10 * hitPoints);
+//        setX(x - 10);
     }
 
     public float myFunction(float tempT) {
@@ -100,7 +104,10 @@ public class GOPlayer extends Photon {
 
     public void update() {
         updateLvlConfiguration();
-
+        if(this.getX() < Main.game.blackHole.sx - 5) {
+            gameOver();
+            return;
+        }
         if(immortalityDie > 0) {
             immortalityDie -= Main.delay;
         }
@@ -150,7 +157,7 @@ public class GOPlayer extends Photon {
         maxFreak = Main.game.gameConfiguration.maxFreak;
         prismGravitationParameter = Game.gameConfiguration.prismGravitationParameter;
         obstacleGravitationParameter =  Game.gameConfiguration.obstacleGravitationParameter;
-        Game.blackHole.gravitationParameter = Game.gameConfiguration.gravitationParameter;
+        Main.game.blackHole.gravitationParameter = Game.gameConfiguration.gravitationParameter[Main.game.players.indexOf(this)];
     }
 
     @Override
@@ -183,8 +190,12 @@ public class GOPlayer extends Photon {
                 }
             }
         }
+//        System.out.println(x);
         if(Game.players.size() <= 5) {
-            setX(x - (Main.game.blackHole.gravitationPower) / Main.fps * (1 + 1/this.x));
+//            System.out.printf("%f - %f = ", x, Main.game.blackHole.gravitationPower / Main.fps);
+            setX(funX - (Main.game.blackHole.gravitationPower) / Main.fps/* * (1 + 1/this.x)*/);
+//            System.out.println(x + "\n");
+
         }
         t += freak;
         y = myFunction(t);
@@ -196,14 +207,36 @@ public class GOPlayer extends Photon {
         if (Math.abs(shiftObAlongX) > 0) {
             if (Math.abs(shiftObAlongX) < 0.5)
                 shiftObAlongX = 0;
-            setX((float) (x - 0.2 * Math.signum(shiftObAlongX)));
+//            setX((float) (x - 0.2 * Math.signum(shiftObAlongX)));
             shiftObAlongX -= 0.2 * Math.signum(shiftObAlongX);
         }
 
     }
     public void setX(float newX) {
-        x = newX;
-}
+//        x = newX ;//= (float) (70 - (Math.pow(450f, 4) / Math.pow(newX, 4)));
+//        x = newX = (float) (55 - (Math.pow(450f, 1) / Math.pow(newX, 1)));
+//        x = newX = (float) ( 45 + (1 - Math.pow( (45f/newX),1 ) * 10) );
+//        System.out.print("(" + newX + ")");
+        funX = newX;
+        if(newX >= beginX) {
+            float deltaX = -20 + 0;
+            newX -= beginX;
+//            System.out.println("   //  --- > " + (1f - 1f / (newX + 1f)) + " <> "+ (1f / (newX + 1f)) + " <> " + (newX + 1f));
+            x = (float) (1f - 1f / (0.04f*newX + 1f)) * deltaX + beginX;
+        }
+        else
+            x = newX;
+//        System.out.println(newX + "   "  + x);
+    }
+    public float getX() {
+        return x+Draw.xshift;
+    }
+    public float getXForPoint() {
+        return x;
+    }
+//    public float getX() {
+//        return funX;
+//    }
     public void checkCollisions() {
         for(GOObstacle ob : Game.obstacles) {
             if(Physics.checkCollisions(this, ob) && !die && !ob.die && !immortal) {
@@ -225,19 +258,33 @@ public class GOPlayer extends Photon {
 
     }
     public void collisionWithObstacle() {
-        obstacles++;
-        immortalityDie = timeToRecovery;
-        die = true;
-        color = 1;
-        Game.gameConfiguration.gravitationParameter += obstacleGravitationParameter;
+        if(Main.game.gameConfiguration.playersAmount <= 1) {
+            obstacles++;
+            immortalityDie = timeToRecovery;
+            die = true;
+            color = 1;
+            Main.game.gameConfiguration.gravitationParameter[Main.game.players.indexOf(this)] += obstacleGravitationParameter;
 //        setScore(scoreBonusByObstacle);
-        comboBonus = 0;
+            comboBonus = 0;
+        } else {
+            for(GOPlayer curPlayer : Main.game.players) {
+                if(curPlayer != this)
+                    Main.game.gameConfiguration.gravitationParameter[Main.game.players.indexOf(curPlayer)] -= obstacleGravitationParameter /(Main.game.gameConfiguration.playersAmount - 1);
+            }
+        }
     }
     public void collisionWithPrism() {
-        prism++;
-        comboBonus++;
-        setScore(scoreBonusByPrism);
-        Game.gameConfiguration.gravitationParameter += prismGravitationParameter;
+        if(Main.game.gameConfiguration.playersAmount <= 1) {
+            prism++;
+            comboBonus++;
+            setScore(scoreBonusByPrism);
+            Game.gameConfiguration.gravitationParameter[Main.game.players.indexOf(this)] += prismGravitationParameter;
+        } else {
+            for (GOPlayer curPlayer : Main.game.players) {
+                if(curPlayer != this)
+                    Main.game.gameConfiguration.gravitationParameter[Main.game.players.indexOf(curPlayer)] -= prismGravitationParameter / (Main.game.gameConfiguration.playersAmount - 1);
+            }
+        }
 //        immortalityDie = timeToRecovery;
 //        setScore(scoreBonusByPrism);
 //        shiftObAlongX += -penalty*2;
@@ -259,9 +306,6 @@ public class GOPlayer extends Photon {
         this.defaultColor = color;
     }
     public boolean isClashWith(GOObstacle obstacle) {
-        return isClashWith(this, obstacle);
-    }
-    public boolean isClashWith(GOPlayer player, GOObstacle obstacle) {
         for (GOPoint point : this.path) {
             if (Physics.checkCollisions(obstacle, new GOPoint(point.getX(), point.getY(), this.getSx()*1.5f, this.getSy()*1.5f, this))) {
                 return true;

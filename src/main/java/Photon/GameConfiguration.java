@@ -10,7 +10,8 @@ public class GameConfiguration {
     public float scoreBonusByPrism = 100;
     public float scoreBonusByObstacle = -50;
     public float defaultGravitationPower = 5;
-    public float gravitationParameter = defaultGravitationPower;
+//    public float gravitationParameter = defaultGravitationPower;
+    public float gravitationParameter[] = new float[playersAmount];
     public float defPrismGravitationParameter ;
     public float defObstacleGravitationParameter ;
     public float prismGravitationParameter = defPrismGravitationParameter;
@@ -32,7 +33,10 @@ public class GameConfiguration {
         scoreBonusByPrism = 100;
         scoreBonusByObstacle = -50;
         defaultGravitationPower = 5;
-        gravitationParameter = defaultGravitationPower;
+        for(int i = 0; i < playersAmount; i++) {
+            gravitationParameter[i] = defaultGravitationPower;
+        }
+//        gravitationParameter = defaultGravitationPower;
         defPrismGravitationParameter = defaultGravitationPower * 1.5f;
         defObstacleGravitationParameter =  - defaultGravitationPower * 0.5f;
         prismGravitationParameter = defPrismGravitationParameter;
@@ -65,10 +69,21 @@ public class GameConfiguration {
 //            timeToObst = 0.05f;
             timeToPrism = 6f - level * 0.5f;
 //            timeToPrism = 0.05f;
-            gravitationParameter -= (0.02f + level * 0.02f) / Main.fps;
+//            gravitationParameter -= (0.02f + level * 0.02f) / Main.fps;
+            for(int i = 0; i < playersAmount; i++) {
+                if(playersAmount < 2)
+                    gravitationParameter[i] -= (0.02f + level * 0.02f) / Main.fps;
+//                if(gravitationParameter[i] < 0)
+//                    gravitationParameter[i] = 0;
+            }
         }
-        else
-            gravitationParameter -= (0.22f + level * 0.01f) / Main.fps;
+        else {
+            for(int i = 0; i < playersAmount; i++) {
+                if(playersAmount < 2)
+                    gravitationParameter[i] -= (0.22f + level * 0.01f) / Main.fps;
+            }
+//            gravitationParameter -= (0.22f + level * 0.01f) / Main.fps;
+        }
 //        obstacleGravitationParameter = (float) (defObstacleGravitationParameter * (1 + 0.25 * level));
 
     }
