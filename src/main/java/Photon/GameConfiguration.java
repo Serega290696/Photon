@@ -53,7 +53,7 @@ public class GameConfiguration {
 
     public void update() {
         int level = Game.level;
-        if(moveOnStep <= 2.8f)
+        if(moveOnStep <= 1.8f)
             moveOnStep = defMoveOnStep + 0.20f * level; // 0.15 -> 2.8
         if(minFreak < 0.16f)
             minFreak = 0.12f + 0.004f * level; // 0.12 -> 0.3
@@ -66,9 +66,8 @@ public class GameConfiguration {
             prismSx = (float) (2 + 1*Math.random() + level * 0.1f);
             freakChanger = (float) (Math.PI / Main.fps /6 * (0.8 + level*0.2));
             timeToObst = 1.75f - level * 0.075f;
-//            timeToObst = 0.05f;
-            timeToPrism = 6f - level * 0.5f;
-//            timeToPrism = 0.05f;
+            timeToObst = 1.75f - level * 0.125f;
+            timeToPrism = 4f - level * 0.3f;
 //            gravitationParameter -= (0.02f + level * 0.02f) / Main.fps;
             for(int i = 0; i < playersAmount; i++) {
                 if(playersAmount < 2)

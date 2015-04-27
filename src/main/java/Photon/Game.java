@@ -10,8 +10,8 @@ import Photon.GameObjects.Bonus.GOPrism;
 import Photon.GameObjects.Enemy.GOBlackHole;
 import Photon.GameObjects.Enemy.GOObstacle;
 import Photon.GameObjects.GOPhoton.GOPhotonFon;
-import Photon.GameObjects.GOPhoton.GOPoint;
 import Photon.GameObjects.GOPhoton.GOPlayer;
+import Photon.GameObjects.GOPhoton.GOPoint;
 import org.lwjgl.input.Keyboard;
 
 import java.sql.Time;
@@ -57,6 +57,7 @@ public class Game implements IGame{
     private static float timeToPrism;
     private static float timeToObst;
     private static boolean restartGame = false;
+    private static long lastFrame = 0;
 
     private boolean isEnableCheats = true;
     private int toEnableCheats[] = new int[]{5, 5, 6, 7, 2, 5};
@@ -74,23 +75,77 @@ public class Game implements IGame{
 //            }
             if(gameConfiguration.playersAmount == 1) {
                 massOfPlayers[0] =
-                        (player = new GOPlayer(GOPlayer.beginX, 50 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false));
+                        (player = GOPlayer.newBuilder()
+                                        .setXStart(GOPlayer.beginX)
+                                        .setYStart(50 * Main.ratio)
+                                        .setSize(2)
+                                        .setFigure(DrawFigure.CIRCLE)
+                                        .setName(User.defaultName)
+                                        .setColor(2)
+                                        .isBot(false)
+                                        .build()
+                        );
+                System.out.println("A: "  + player.x);
             }
-            if(gameConfiguration.playersAmount > 1) {
+            if(gameConfiguration.playersAmount == 2) {
                 massOfPlayers[0] =
-                        (player = new GOPlayer(45, 40 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false));
+                        (player = GOPlayer.newBuilder()
+                                .setXStart(45)
+                                .setYStart(40 * Main.ratio)
+                                .setSize(2)
+                                .setFigure(DrawFigure.CIRCLE)
+                                .setName(User.defaultName)
+                                .setColor(2)
+                                .isBot(false)
+                                .build()
+                        );
                 massOfPlayers[1] =
-                        (player2 = new GOPlayer(45, 60 * Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName + "_2", 5, false));
+                        (player = GOPlayer.newBuilder()
+                                .setXStart(GOPlayer.beginX)
+                                .setYStart(60 * Main.ratio)
+                                .setSize(2)
+                                .setFigure(DrawFigure.CIRCLE)
+                                .setName(User.defaultName + "_2")
+                                .setColor(4)
+                                .isBot(false)
+                                .build()
+                        );
             }
-//            massOfPlayers[] = {
-//                    player = new GOPlayer(60, 50*Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName, 2, false),
-//                    player2 = new GOPlayer(40, 50*Main.ratio, 2, DrawFigure.CIRCLE, User.defaultName + "_2", 5, false),
-////                    player2 = new GOPlayer(20, 50*Main.ratio, 2, DrawFigure.CIRCLE, "Player#2", 6, false),
-////                    new GOPlayer(30, 50*Main.ratio, 1, DrawFigure.CIRCLE, "miniBot", 3, true),
-////                    new GOPlayer(20, 50*Main.ratio, 1, DrawFigure.CIRCLE, "angryBot >.<", 3, true),
-////                    null
-////                    player = new GOPlayer(50, 50*Main.ratio, 3, DrawFigure.CIRCLE, "Serega", 2, false),
-//            };
+            if(gameConfiguration.playersAmount >= 3) {
+                massOfPlayers[0] =
+                        (player = GOPlayer.newBuilder()
+                                .setXStart(GOPlayer.beginX)
+                                .setYStart(35 * Main.ratio)
+                                .setSize(2)
+                                .setFigure(DrawFigure.CIRCLE)
+                                .setName(User.defaultName)
+                                .setColor(2)
+                                .isBot(false)
+                                .build()
+                        );
+                massOfPlayers[1] =
+                        (player = GOPlayer.newBuilder()
+                                .setXStart(GOPlayer.beginX)
+                                .setYStart(50 * Main.ratio)
+                                .setSize(2)
+                                .setFigure(DrawFigure.CIRCLE)
+                                .setName(User.defaultName + "_2")
+                                .setColor(4)
+                                .isBot(false)
+                                .build()
+                        );
+                massOfPlayers[2] =
+                        (player = GOPlayer.newBuilder()
+                                .setXStart(GOPlayer.beginX)
+                                .setYStart(65 * Main.ratio)
+                                .setSize(2)
+                                .setFigure(DrawFigure.CIRCLE)
+                                .setName(User.defaultName + "_3")
+                                .setColor(3)
+                                .isBot(true)
+                                .build()
+                        );
+            }
             addAllPlayers(massOfPlayers);
         } catch(PlayerDoNotExist myE) {
             System.err.print(myE);
@@ -106,7 +161,19 @@ public class Game implements IGame{
 
     }
 
-        public void clear() {
+    public void clear() {
+        Thread thread = new Thread(
+                new Runnable() {
+                    public void run() {
+                        while(true) {
+                            Draw.writeFramesPerSecond((int)(1000f/ (new Date().getTime()-lastFrame)));
+                            lastFrame = new Date().getTime();
+//                            System.out.println("a");
+                        }
+                    }
+                }
+        );
+        thread.start();
         players.clear();
         allObjects.clear();
         obstacles.clear();
@@ -339,11 +406,6 @@ public class Game implements IGame{
             oldTime = integerTime;
         }
 
-        if(nowNewSecond) {
-//            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
-//            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
-//            fon.add(new GOPhotonFon(100, (float)Math.random()*100f*Main.ratio, (float)(0.5 + 2.0*Math.random()), DrawFigure.CIRCLE, 3));
-        }
         if(integerTime%6 == 0 && nowNewSecond) {
             level++;
         }
@@ -351,9 +413,7 @@ public class Game implements IGame{
         freakChanger = gameConfiguration.freakChanger;
         timeToPrism = gameConfiguration.timeToPrism;
         timeToObst = gameConfiguration.timeToObst;
-//        System.out.println(timeToObst + "~" + gameConfiguration.timeToObst);
-//        if(time - timeCfCreationBonus >= 1.0 + (5.0f / Math.pow(level, 0.5f))) {
-        if(time - timeCfCreationBonus >= timeToPrism) {
+        if(time - timeCfCreationBonus >= timeToPrism && Main.game.gameConfiguration.playersAmount <= 1) {
             if(!obstacles.isEmpty()) {
                 bonuses.add(new GOPrism());
                 while(Physics.checkCollisions(obstacles.get(obstacles.size() - 1), bonuses.get(bonuses.size() - 1))) {
@@ -378,17 +438,6 @@ public class Game implements IGame{
                 timeCfCreationObstacle = time;
             }
         }
-//        if(time - timeCfCreationObstacle >= timeToObst) {
-//            if(time)
-//            obstacles.add(new GOObstacle());
-//            timeCfCreationObstacle = time;
-//        }
-//        if(integerTime % 2 == 0) {
-//            obstacles.add(new GOObstacle());
-//        }
-//        if(Math.random() < 0.05) {
-//            obstacles.add(new GOObstacle());
-//        }
     }
 
     public void render() {
@@ -399,12 +448,6 @@ public class Game implements IGame{
         else
             Draw.xshift = 0;
         if(distance*moveOnStep >= 20) distance = 0;
-//        Draw.draw(DrawFigure.FON, 10 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-//        Draw.draw(DrawFigure.FON, 30 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-//        Draw.draw(DrawFigure.FON, 50 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-//        Draw.draw(DrawFigure.FON, 70 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-//        Draw.draw(DrawFigure.FON, 90 - distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
-//        Draw.draw(DrawFigure.FON, 110- distance*moveOnStep, 50 * Main.ratio, 20, 100 * Main.ratio);
         Draw.draw(DrawFigure.FON2, 0, 20 * Main.ratio, 150, 60 * Main.ratio);
 
         for(GO ob : allObjects) {
@@ -423,10 +466,8 @@ public class Game implements IGame{
             bonus.render();
         }
         Draw.gameInterface();
-//        prism.render();
     }
     public void delObj(GO removeOb) {
-//        allObjects.remove(removeOb);
         obstacles.remove(removeOb);
     }
     private void addAllPlayers(GOPlayer massOfPlayers[]) throws PlayerDoNotExist{
@@ -441,10 +482,6 @@ public class Game implements IGame{
 
 
     public static void gameOver() {
-//        String nameOfPlayer = "Pashok";
-//        player.setName(nameOfPlayer);
-
-//        DBWorker.getAll().toString();
         for(GOPlayer player : players) {
             User user = new User(player.name, (int)player.score, new Time((integerTime/3600), (integerTime/60)%60, integerTime%60), (new java.sql.Date( new Date().getTime())));
             DBWorker.insert(user);
@@ -452,12 +489,6 @@ public class Game implements IGame{
         System.out.println("\n********************");
         DBWorker.getAll().toString();
         System.out.println("********************\n");
-//        if(Game.players.size() <= 1)
         restartGame = true;
-//        else
-//            players.remove(player);
-//        DBWorker.insert(player.name, (int)player.score, 1000, new Time(integerTime), (new java.sql.Date( new Date().getTime() )), 0);
-
-//        DBWorker.update();
     }
 }

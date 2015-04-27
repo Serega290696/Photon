@@ -225,15 +225,15 @@ public class Draw {
     }
     public static void gameInterface() {
         glEnable(GL_TEXTURE_2D);
-        font1_2.drawString((10)*Main.em, 95*Main.em*Main.ratio,
+        font1_2.drawString((10) * Main.em, 95 * Main.em * Main.ratio,
                 "Level: " + String.valueOf(Game.level) +
-                "        Time: " + Game.integerTime +
-                "        Speed: " + (int)(Game.moveOnStep*100) +
-                "        Factor: " + (int)(Main.game.player.factor) +
-                "*" + (Main.game.player.comboBonus) +
-                "        Gravity: " + (Main.game.blackHole.gravitationPower/Game.blackHole.specialGravityParameter) +
-                " (" + Game.blackHole.specialGravityParameter + ")" +
-                "       " + (Main.game.player.prism) + " : " + (Main.game.player.obstacles)
+                        "        Time: " + Game.integerTime +
+                        "        Speed: " + (int) (Game.moveOnStep * 100) +
+                        "        Factor: " + (int) (Main.game.player.factor) +
+                        "*" + (Main.game.player.comboBonus) +
+                        "        Gravity: " + (Main.game.blackHole.gravitationPower / Game.blackHole.specialGravityParameter) +
+                        " (" + Game.blackHole.specialGravityParameter + ")" +
+                        "       " + (Main.game.player.prism) + " : " + (Main.game.player.obstacles)
                 , org.newdawn.slick.Color.white);
         for(int i = 0; i < Game.players.size(); i++) {
             font1_1.drawString((10 + (100 / Game.players.size() * i))*Main.em, 5*Main.em*Main.ratio, Game.players.get(i).name, org.newdawn.slick.Color.white);
@@ -364,6 +364,20 @@ public class Draw {
                 glColor4f(0f, 0.0f, 0.0f, opacity);
                 break;
         }
+    }
+    public static void writeFramesPerSecond(int framesPerSecond) {
+        font1_2.drawString(2, 95*Main.em*Main.ratio,
+                String.valueOf(framesPerSecond),
+                org.newdawn.slick.Color.white);
+        font1_2.drawString(0, 0,
+                String.valueOf(framesPerSecond),
+                org.newdawn.slick.Color.white);
+        font1_2.drawString(55, 55,
+                String.valueOf(framesPerSecond),
+                org.newdawn.slick.Color.white);
+        font1_2.drawString(22, 22,
+                String.valueOf(framesPerSecond),
+                org.newdawn.slick.Color.white);
     }
     public static void musicPlay(Music music) {
         switch(music) {

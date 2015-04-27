@@ -50,7 +50,7 @@ public class GOPlayer extends Photon {
 //    public static final float maxFreak = 0.5f;
 
 
-    public GOPlayer(float x, float y, float sx, DrawFigure figure, String name, int color, boolean isBot) {
+    private GOPlayer(float x, float y, float sx, DrawFigure figure, String name, int color, boolean isBot) {
         this.x = x;
         this.funX = x;
         this.y = y;
@@ -82,15 +82,13 @@ public class GOPlayer extends Photon {
         Game.gameOver();
     }
 
-    public GOPlayer() {
-        figure = DrawFigure.CIRCLE;
-        this.x = 60;
-        sx = 3;
-        sy = 3;
-        defaultSx = sx;
-        name = "Player " + Game.players.size() + "";
-//        x -= 10 * hitPoints;
-//        setX(x - 10);
+    private GOPlayer() {
+//        figure = DrawFigure.CIRCLE;
+//        this.x = 60;
+//        sx = 3;
+//        sy = 3;
+//        defaultSx = sx;
+//        name = "Player " + Game.players.size() + "";
     }
 
     public float myFunction(float tempT) {
@@ -282,7 +280,7 @@ public class GOPlayer extends Photon {
         } else {
             for (GOPlayer curPlayer : Main.game.players) {
                 if(curPlayer != this)
-                    Main.game.gameConfiguration.gravitationParameter[Main.game.players.indexOf(curPlayer)] -= prismGravitationParameter / (Main.game.gameConfiguration.playersAmount - 1);
+                    Main.game.gameConfiguration.gravitationParameter[Main.game.players.indexOf(curPlayer)] -= prismGravitationParameter / (Main.game.gameConfiguration.playersAmount - 1) / 3;
             }
         }
 //        immortalityDie = timeToRecovery;
@@ -325,5 +323,59 @@ public class GOPlayer extends Photon {
             dodgedObstacle++;
 //            score += 50;
         }
+    }
+
+
+    public static PlayerBuilder newBuilder() {
+        return new GOPlayer().new PlayerBuilder();
+    }
+
+    public class PlayerBuilder {
+
+        private PlayerBuilder() {
+        }
+        public GOPlayer build() {
+            GOPlayer.this.funX = x;
+            GOPlayer.this.defaultY = y;
+            GOPlayer.this.defaultSx = sx;
+            GOPlayer.this.defaultColor = color;
+            GOPlayer.this.t = 0;
+            for(int i = 0; ; i++) {
+                path.add(new GOPoint(i * Game.moveOnStep*1.5f, defaultY, GOPlayer.this));
+//            path.add(new GOPoint(i * 0.75f, defaultY, this));
+                if(i * Game.moveOnStep > Main.dWidth)
+                    break;
+            }
+            return GOPlayer.this;
+        }
+        public PlayerBuilder setXStart(float x) {
+            GOPlayer.this.x = x;
+            return this;
+        }
+        public PlayerBuilder setYStart(float y) {
+            GOPlayer.this.y = y;
+            return this;
+        }
+        public PlayerBuilder setSize(float sx) {
+            GOPlayer.this.sx = sx;
+            return this;
+        }
+        public PlayerBuilder setFigure(DrawFigure figure) {
+            GOPlayer.this.figure = figure;
+            return this;
+        }
+        public PlayerBuilder setName(String name) {
+            GOPlayer.this.name = name;
+            return this;
+        }
+        public PlayerBuilder setColor(int color) {
+            GOPlayer.this.color = color;
+            return this;
+        }
+        public PlayerBuilder isBot(boolean isBot) {
+            GOPlayer.this.isBot = isBot;
+            return this;
+        }
+
     }
 }

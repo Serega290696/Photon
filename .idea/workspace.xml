@@ -2,20 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e4c0460-1b50-4aae-9932-e30fb4078c8a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/Draw$1.class" afterPath="$PROJECT_DIR$/target/classes/Photon/Draw$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/Draw.class" afterPath="$PROJECT_DIR$/target/classes/Photon/Draw.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameObjects/Enemy/GOBlackHole.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameObjects/Enemy/GOBlackHole.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/Game.class" afterPath="$PROJECT_DIR$/target/classes/Photon/Game.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/PhotonSql_jar/PhotonSql.jar" afterPath="$PROJECT_DIR$/out/artifacts/PhotonSql_jar/PhotonSql.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/Photon_jar/PhotonSql.jar" afterPath="$PROJECT_DIR$/out/artifacts/Photon_jar/PhotonSql.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/GOPhotonFon.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/GOPhotonFon.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/GOPlayer.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/GOPlayer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/GOPoint.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/GOPoint.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameConfiguration.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameConfiguration.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/Photon.class" afterPath="$PROJECT_DIR$/target/classes/Photon/GameObjects/GOPhoton/Photon.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/Draw.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/Draw.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/Enemy/GOBlackHole.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/Enemy/GOBlackHole.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPhotonFon.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPhotonFon.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPlayer.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPoint.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPoint.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/Game.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/Game.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/Photon.java" afterPath="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/Photon.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PhotonSql.iws" />
@@ -67,10 +62,12 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66483516">
-              <caret line="453" column="50" selection-start-line="453" selection-start-column="50" selection-end-line="453" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.67493796">
+              <caret line="180" column="20" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#6802#7182#0" expanded="true" />
+                <element signature="e#7181#7182#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,6 +79,7 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="135" column="34" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="34" />
               <folding>
+                <element signature="imports" expanded="false" />
                 <marker date="1428189633663" expanded="true" signature="576:619" placeholder="INSERT INTO ..." />
                 <marker date="1428189633663" expanded="true" signature="682:744" placeholder="UPDATE top_l..." />
                 <marker date="1428189633663" expanded="true" signature="789:892" placeholder="UPDATE top_l..." />
@@ -89,16 +87,6 @@
                 <marker date="1428189633663" expanded="true" signature="1033:1066" placeholder="SELECT * FRO..top_list..." />
                 <marker date="1428189633663" expanded="true" signature="1117:1152" placeholder="SELECT * FRO..top_list..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractCollection.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/src.zip!/java/util/AbstractCollection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="452" column="18" selection-start-line="452" selection-start-column="18" selection-end-line="452" selection-end-column="18" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -113,27 +101,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="photon.top_list" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/946a998/72258356-8951-4b08-97f8-b4075bded83b/photon..top_list">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GOPoint.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPoint.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="78" column="14" selection-start-line="78" selection-start-column="14" selection-end-line="78" selection-end-column="14" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2526#2527#0" expanded="false" />
+                <element signature="e#2566#2567#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,10 +121,7 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="58" column="29" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="29" />
               <folding>
-                <element signature="e#1492#1493#0" expanded="true" />
-                <element signature="e#1516#1517#0" expanded="true" />
-                <element signature="e#1550#1551#0" expanded="true" />
-                <element signature="e#1574#1575#0" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -157,7 +131,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Draw.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+              <caret line="367" column="34" selection-start-line="367" selection-start-column="34" selection-end-line="367" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -169,7 +143,36 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Photon/GameConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
+              <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GOPlayer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <folding>
+                <element signature="e#2596#2597#0" expanded="true" />
+                <element signature="e#2627#2628#0" expanded="true" />
+                <element signature="e#7875#7876#0" expanded="true" />
+                <element signature="e#7911#7912#0" expanded="true" />
+                <element signature="e#10380#10381#0" expanded="true" />
+                <element signature="e#10412#10413#0" expanded="true" />
+                <element signature="e#11359#11360#0" expanded="true" />
+                <element signature="e#11416#11417#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="141" column="9" selection-start-line="141" selection-start-column="9" selection-end-line="141" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -207,13 +210,13 @@
         <option value="$PROJECT_DIR$/src/main/java/Photon/GameObjects/Enemy/GOObstacle.java" />
         <option value="$PROJECT_DIR$/src/main/java/Photon/GameObjects/Bonus/GOPrism.java" />
         <option value="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPhotonFon.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Photon/Draw.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Photon/GameConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/Photon.java" />
         <option value="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPoint.java" />
         <option value="$PROJECT_DIR$/src/main/java/Photon/GameObjects/Enemy/GOBlackHole.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Photon/GameConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPlayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Photon/Game.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Photon/Draw.java" />
       </list>
     </option>
   </component>
@@ -237,10 +240,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="960" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -267,6 +268,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -588,8 +591,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -878,9 +879,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="Unknown" factoryName="Unknown">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -929,7 +927,8 @@
       <workItem from="1429035163077" duration="247000" />
       <workItem from="1429035637002" duration="5336000" />
       <workItem from="1429122850568" duration="83000" />
-      <workItem from="1429218037771" duration="21411000" />
+      <workItem from="1429218037771" duration="21540000" />
+      <workItem from="1430160545785" duration="8154000" />
     </task>
     <task id="LOCAL-00001" summary="v1.1">
       <created>1428189744083</created>
@@ -1033,11 +1032,17 @@
       <option name="project" value="LOCAL" />
       <updated>1429037343746</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="v2.5">
+      <created>1429308466045</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1429308466045</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137864000" />
+    <option name="totallyTimeSpent" value="146147000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1049,23 +1054,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="0" y="0" width="960" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32324323" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3212321" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37945947" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.08250825" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14658849" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12313433" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44004402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23222223" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1079,6 +1083,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44004402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1103,7 +1108,8 @@
     <MESSAGE value="v2.3" />
     <MESSAGE value="v2.4" />
     <MESSAGE value="v2.4.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="v2.4.1" />
+    <MESSAGE value="v2.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="v2.5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1116,6 +1122,24 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Draw.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Photon/GameConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/Photon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1153,19 +1177,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#6802#7182#0" expanded="true" />
+            <element signature="e#7181#7182#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/946a998/72258356-8951-4b08-97f8-b4075bded83b/photon..top_list">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1189,6 +1203,8 @@
           <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#6802#7182#0" expanded="true" />
+            <element signature="e#7181#7182#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1208,14 +1224,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2595#2596#0" expanded="true" />
-            <element signature="e#2626#2627#0" expanded="true" />
-            <element signature="e#7916#7917#0" expanded="true" />
-            <element signature="e#7952#7953#0" expanded="true" />
-            <element signature="e#7986#7987#0" expanded="true" />
-            <element signature="e#8010#8011#0" expanded="true" />
-            <element signature="e#10417#10418#0" expanded="true" />
-            <element signature="e#10449#10450#0" expanded="true" />
+            <element signature="e#2596#2597#0" expanded="true" />
+            <element signature="e#2627#2628#0" expanded="true" />
+            <element signature="e#7875#7876#0" expanded="true" />
+            <element signature="e#7911#7912#0" expanded="true" />
+            <element signature="e#10380#10381#0" expanded="true" />
+            <element signature="e#10412#10413#0" expanded="true" />
+            <element signature="e#11359#11360#0" expanded="true" />
+            <element signature="e#11416#11417#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1239,18 +1255,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="83" column="72" selection-start-line="83" selection-start-column="72" selection-end-line="83" selection-end-column="72" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/946a998/72258356-8951-4b08-97f8-b4075bded83b/photon..top_list">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1372,8 +1376,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="298" column="19" selection-start-line="298" selection-start-column="19" selection-end-line="298" selection-end-column="19" />
           <folding>
-            <element signature="e#10907#10908#0" expanded="true" />
-            <element signature="e#10945#10946#0" expanded="true" />
+            <element signature="e#10907#10908#0" expanded="false" />
+            <element signature="e#10945#10946#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1383,19 +1387,6 @@
         <state vertical-scroll-proportion="0.17097701">
           <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="110" column="25" selection-start-line="110" selection-start-column="25" selection-end-line="110" selection-end-column="25" />
-          <folding>
-            <element signature="e#1397#1398#0" expanded="false" />
-            <element signature="e#1423#1424#0" expanded="false" />
-            <element signature="e#3022#3023#0" expanded="false" />
-            <element signature="e#3063#3064#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1447,34 +1438,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Draw.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/Photon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="29" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="29" />
           <folding>
-            <element signature="e#1492#1493#0" expanded="true" />
-            <element signature="e#1516#1517#0" expanded="true" />
-            <element signature="e#1550#1551#0" expanded="true" />
-            <element signature="e#1574#1575#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Photon/GameConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1482,23 +1452,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="78" column="14" selection-start-line="78" selection-start-column="14" selection-end-line="78" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.862069">
-          <caret line="225" column="9" selection-start-line="225" selection-start-column="9" selection-end-line="225" selection-end-column="9" />
           <folding>
-            <element signature="e#2595#2596#0" expanded="true" />
-            <element signature="e#2626#2627#0" expanded="true" />
-            <element signature="e#7916#7917#0" expanded="true" />
-            <element signature="e#7952#7953#0" expanded="true" />
-            <element signature="e#7986#7987#0" expanded="true" />
-            <element signature="e#8010#8011#0" expanded="true" />
-            <element signature="e#10417#10418#0" expanded="true" />
-            <element signature="e#10449#10450#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2526#2527#0" expanded="false" />
+            <element signature="e#2566#2567#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1523,7 +1480,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="452" column="18" selection-start-line="452" selection-start-column="18" selection-end-line="452" selection-end-column="18" />
-          <folding />
+          <folding>
+            <element signature="e#0#15893#0" expanded="false" />
+            <element signature="e#2293#2294#0" expanded="false" />
+            <element signature="e#2327#2328#0" expanded="false" />
+            <element signature="e#8767#8768#0" expanded="false" />
+            <element signature="e#8824#8825#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1532,6 +1495,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="135" column="34" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="34" />
           <folding>
+            <element signature="imports" expanded="false" />
             <marker date="1428189633663" expanded="true" signature="576:619" placeholder="INSERT INTO ..." />
             <marker date="1428189633663" expanded="true" signature="682:744" placeholder="UPDATE top_l..." />
             <marker date="1428189633663" expanded="true" signature="789:892" placeholder="UPDATE top_l..." />
@@ -1542,25 +1506,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/946a998/72258356-8951-4b08-97f8-b4075bded83b/photon..top_list">
-      <provider editor-type-id="text-editor">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Photon/GameConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Photon/GameObjects/GOPhoton/GOPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding>
+            <element signature="e#2596#2597#0" expanded="true" />
+            <element signature="e#2627#2628#0" expanded="true" />
+            <element signature="e#7875#7876#0" expanded="true" />
+            <element signature="e#7911#7912#0" expanded="true" />
+            <element signature="e#10380#10381#0" expanded="true" />
+            <element signature="e#10412#10413#0" expanded="true" />
+            <element signature="e#11359#11360#0" expanded="true" />
+            <element signature="e#11416#11417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="141" column="9" selection-start-line="141" selection-start-column="9" selection-end-line="141" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/jre/lib/rt.jar!/java/lang/Thread.class">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Draw.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="367" column="34" selection-start-line="367" selection-start-column="34" selection-end-line="367" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Photon/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66483516">
-          <caret line="453" column="50" selection-start-line="453" selection-start-column="50" selection-end-line="453" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.67493796">
+          <caret line="180" column="20" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#6802#7182#0" expanded="true" />
+            <element signature="e#7181#7182#0" expanded="true" />
           </folding>
         </state>
       </provider>
