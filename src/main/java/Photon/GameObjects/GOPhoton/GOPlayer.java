@@ -10,10 +10,6 @@ import Photon.GameObjects.Enemy.GOObstacle;
  */
 public class GOPlayer extends Photon {
 
-//    public float defAmplitude = 20 * Main.ratio / 2;
-//    public float amplitude = 20 * Main.ratio / 2;
-//    public float freak = 0.12f;
-//    public float playerYShift = 50 * Main.ratio;
     public float score = 0;
     public float scoreBonusBySecond = 1;
     public float scoreBonusByPrism = Game.gameConfiguration.scoreBonusByPrism;
@@ -25,13 +21,9 @@ public class GOPlayer extends Photon {
     public int prism = 0;
     public int obstacles = 0;
     public float score2 = 0;
-//    public int immortalityDie  = 0;
-//    public int timeToRecovery  = 3000;
     public int hitPoints  = 0;
-//    public ArrayList<GOPoint> path = new ArrayList();
 
 
-//    public float lengthTrajectory = 30;
     public boolean danger = false;
     private float penalty = 4;
     public String name;
@@ -46,8 +38,6 @@ public class GOPlayer extends Photon {
     public static float beginX = 50;
 
 
-//    public static float minFreak = 0.15f;
-//    public static final float maxFreak = 0.5f;
 
 
     private GOPlayer(float x, float y, float sx, DrawFigure figure, String name, int color, boolean isBot) {
@@ -64,15 +54,11 @@ public class GOPlayer extends Photon {
         this.color = color;
         this.defaultColor = color;
         this.isBot = isBot;
-//        this.gameOver();
-//        this.x -= 10 * hitPoints;
-//        this.t = (float) (200*Math.random());
         this.t = 0;
 
         float temp = lengthTrajectory / Game.moveOnStep -1;
         for(int i = 0; ; i++) {
             path.add(new GOPoint(i * Game.moveOnStep*1.5f, defaultY, this));
-//            path.add(new GOPoint(i * 0.75f, defaultY, this));
             if(i * Game.moveOnStep > Main.dWidth)
                 break;
         }
@@ -83,12 +69,6 @@ public class GOPlayer extends Photon {
     }
 
     private GOPlayer() {
-//        figure = DrawFigure.CIRCLE;
-//        this.x = 60;
-//        sx = 3;
-//        sy = 3;
-//        defaultSx = sx;
-//        name = "Player " + Game.players.size() + "";
     }
 
     public float myFunction(float tempT) {
@@ -135,14 +115,6 @@ public class GOPlayer extends Photon {
 
 
 
-//        if(Game.nowNewSecond) {
-//            System.out.print(Game.integerTime + ". lvl:" + Game.level + ". " + name + ".\t\tScore: " + (int) score + ".   Dodged obstacles: " + dodgedObstacle + ".   Clash with obstacles: " + Math.abs(hitPoints) +
-//                            "\t\t ||| \t\t Color: " + color + ". Freak: " + freak + ". IsBot: " + isBot
-//            );
-//            if (isBot)
-//                System.out.print("\t\t ||| \t\t BOT: TRUE" + ". BotLevel: " + botLevel + ". NeedToUpFreak: " + needToUpFreak);
-//            System.out.println();
-//        }
 
         checkCollisions();
         move();
@@ -188,43 +160,28 @@ public class GOPlayer extends Photon {
                 }
             }
         }
-//        System.out.println(x);
         if(Game.players.size() <= 5) {
-//            System.out.printf("%f - %f = ", x, Main.game.blackHole.gravitationPower / Main.fps);
             setX(funX - (Main.game.blackHole.gravitationPower) / Main.fps/* * (1 + 1/this.x)*/);
-//            System.out.println(x + "\n");
 
         }
         t += freak;
         y = myFunction(t);
-//        if(x <= Main.game.blackHole.sx + 20) {
-//            y -= playerYShift;
-//            y *=  x / (Main.game.blackHole.sx + 20);
-//            y += playerYShift;
-//        }
         if (Math.abs(shiftObAlongX) > 0) {
             if (Math.abs(shiftObAlongX) < 0.5)
                 shiftObAlongX = 0;
-//            setX((float) (x - 0.2 * Math.signum(shiftObAlongX)));
             shiftObAlongX -= 0.2 * Math.signum(shiftObAlongX);
         }
 
     }
     public void setX(float newX) {
-//        x = newX ;//= (float) (70 - (Math.pow(450f, 4) / Math.pow(newX, 4)));
-//        x = newX = (float) (55 - (Math.pow(450f, 1) / Math.pow(newX, 1)));
-//        x = newX = (float) ( 45 + (1 - Math.pow( (45f/newX),1 ) * 10) );
-//        System.out.print("(" + newX + ")");
         funX = newX;
         if(newX >= beginX) {
             float deltaX = -20 + 0;
             newX -= beginX;
-//            System.out.println("   //  --- > " + (1f - 1f / (newX + 1f)) + " <> "+ (1f / (newX + 1f)) + " <> " + (newX + 1f));
             x = (float) (1f - 1f / (0.04f*newX + 1f)) * deltaX + beginX;
         }
         else
             x = newX;
-//        System.out.println(newX + "   "  + x);
     }
     public float getX() {
         return x+Draw.xshift;
@@ -241,6 +198,8 @@ public class GOPlayer extends Photon {
                 ob.collision();
                 collisionWithObstacle();
                 break;
+            }
+            if(Physics.checkCollisions(this, ob)) {
             }
         }
         for(GOPrism bonus : Game.bonuses) {
@@ -283,14 +242,10 @@ public class GOPlayer extends Photon {
                     Main.game.gameConfiguration.gravitationParameter[Main.game.players.indexOf(curPlayer)] -= prismGravitationParameter / (Main.game.gameConfiguration.playersAmount - 1) / 3;
             }
         }
-//        immortalityDie = timeToRecovery;
-//        setScore(scoreBonusByPrism);
-//        shiftObAlongX += -penalty*2;
     }
 
 
     public void render() {
-//        System.out.println("X: " + x + ".  Y: " + y + ".  Freak: " + freak + "SX/SY: " + sx + "/" + sy);
         Draw.draw(figure, x, y, sx, sy, 0, color, opacity);
     }
 
@@ -358,6 +313,7 @@ public class GOPlayer extends Photon {
         }
         public PlayerBuilder setSize(float sx) {
             GOPlayer.this.sx = sx;
+            GOPlayer.this.sy = sx;
             return this;
         }
         public PlayerBuilder setFigure(DrawFigure figure) {

@@ -1,20 +1,14 @@
 package Photon;
 
-import Photon.DataBase.DBWorker;
-import org.lwjgl.BufferUtils;
+import Photon.DataBase.ListWorker;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.GLU;
-import org.newdawn.slick.Color;
-
-import java.nio.FloatBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.util.glu.Project.gluPerspective;
 
 /**
  * Created by Serega on 03.03.2015.
@@ -24,7 +18,7 @@ public class Main {
 
         public static final String GAME_TITLE = "Photon";
         public static Game game;
-        public static DBWorker dbWorker;
+        public static ListWorker.DBWorker dbWorker;
 
         public static final int delay = 40;
         public static final int fps = (int) (1000 / delay);
@@ -105,7 +99,7 @@ public class Main {
     }
 
     private static void initDBWorker() {
-        dbWorker = new DBWorker();
+        dbWorker = new ListWorker.DBWorker();
     }
         private static void initGame() {
             game = new Game();

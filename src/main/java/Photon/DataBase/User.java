@@ -1,20 +1,34 @@
 package Photon.DataBase;
-import java.sql.Time;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 //import java.util.Date;
 
 /**
  * Created by Serega on 02.04.2015.
  */
+@Entity
+@Table(name = "user")
 public class User {
 
+    @Id
     private int id = 0;
+    @Column(name = "name")
     private String name;
+    @Column(name = "placeInTopList")
     private int placeInTopList = 0;
+    @Column(name = "score")
     private int score;
+    @Column(name = "bestTime")
     private Time bestTime;
+    @Column(name = "gameDate")
     private Date gameDate;
+    @Column(name = "isBestScore")
     private boolean isBestScore = true;
 
     public static String defaultName = "Player";
@@ -60,7 +74,7 @@ public class User {
     public int setPlaceInTopList(int score) {
         int newPlace = 1;
 
-        ArrayList<User> usersList = DBWorker.getAll();
+        ArrayList<User> usersList = ListWorker.DBWorker.getAll();
         if(usersList.isEmpty())
             return 1;
         for (int i = 0; score <= usersList.get(i).getScore(); i++) {
@@ -74,7 +88,7 @@ public class User {
         }
 //        newPlace++;
         placeInTopList = newPlace;
-        DBWorker.updatePlaceInTopList(this.id, this.placeInTopList, this.isBestScoreBool());
+        ListWorker.DBWorker.updatePlaceInTopList(this.id, this.placeInTopList, this.isBestScoreBool());
 //        DBWorker.update(this);
         for (int i = newPlace-1; i <= usersList.size() - 1; i++) {
             User curUser = usersList.get(i);
@@ -82,7 +96,7 @@ public class User {
                 curUser.setBestScoreBool(false);
             curUser.setPlaceInTopListByNumber(curUser.getPlaceInTopList() + 1);
 //            DataBaseWorker.updatePlaceInTopList(curUser.getId(), curUser.getPlaceInTopList(), curUser.isBestScoreBool());
-            DBWorker.update(curUser);
+            ListWorker.DBWorker.update(curUser);
         }
         return newPlace;
     }
@@ -152,7 +166,7 @@ public class User {
     }
     public static int setId() {
         int tmpID = 1;
-        for(int i = 1; DBWorker.getUser(i) != null; i++) {
+        for(int i = 1; ListWorker.DBWorker.getUser(i) != null; i++) {
             tmpID = i+1;
         }
 //        tmpID++;

@@ -1,6 +1,5 @@
 package Photon;
 
-import Photon.DataBase.DBWorker;
 import Photon.DataBase.ListWorker;
 import Photon.DataBase.User;
 import Photon.Enums.DrawFigure;
@@ -162,18 +161,18 @@ public class Game implements IGame{
     }
 
     public void clear() {
-        Thread thread = new Thread(
-                new Runnable() {
-                    public void run() {
-                        while(true) {
-                            Draw.writeFramesPerSecond((int)(1000f/ (new Date().getTime()-lastFrame)));
-                            lastFrame = new Date().getTime();
-//                            System.out.println("a");
-                        }
-                    }
-                }
-        );
-        thread.start();
+//        Thread thread = new Thread(
+//                new Runnable() {
+//                    public void run() {
+//                        while(true) {
+//                            Draw.writeFramesPerSecond((int)(1000f/ (new Date().getTime()-lastFrame)));
+//                            lastFrame = new Date().getTime();
+////                            System.out.println("a");
+//                        }
+//                    }
+//                }
+//        );
+//        thread.start();
         players.clear();
         allObjects.clear();
         obstacles.clear();
@@ -200,10 +199,6 @@ public class Game implements IGame{
         float b = (float) (15f / Main.fps);
         switch(controlMode) {
             case 3:
-                if(Keyboard.isKeyDown(Keyboard.KEY_UP) && !player.isBot){
-                    if(player.y >= player.amplitude*2 + player.sy)
-                        player.playerYShift-=b;
-                }
                 if(Keyboard.isKeyDown(Keyboard.KEY_DOWN) && !player.isBot){
                     if(player.y <= 100*Main.ratio - player.amplitude*2 - player.sy)
                         player.playerYShift+=b;
@@ -484,10 +479,10 @@ public class Game implements IGame{
     public static void gameOver() {
         for(GOPlayer player : players) {
             User user = new User(player.name, (int)player.score, new Time((integerTime/3600), (integerTime/60)%60, integerTime%60), (new java.sql.Date( new Date().getTime())));
-            DBWorker.insert(user);
+            ListWorker.DBWorker.insert(user);
         }
         System.out.println("\n********************");
-        DBWorker.getAll().toString();
+        ListWorker.DBWorker.getAll().toString();
         System.out.println("********************\n");
         restartGame = true;
     }
